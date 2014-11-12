@@ -5,8 +5,11 @@ public class Done_Mover : MonoBehaviour
 {
 	public float speed;
 
+	Rigidbody2D rb = null;
+
 	void Start ()
 	{
-		rigidbody.velocity = transform.right * speed;
+		rb = GetComponent<Rigidbody2D> () as Rigidbody2D;
+		rb.velocity = transform.right * speed;
 	}
 }

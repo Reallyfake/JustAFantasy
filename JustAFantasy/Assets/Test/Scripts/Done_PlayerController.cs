@@ -11,6 +11,7 @@ public class Done_PlayerController : MonoBehaviour
 {
 	public float speed;
 	public float force;
+	Rigidbody2D rb = null;
 
 	public Done_Boundary boundary;
 	public GameObject shot;
@@ -18,6 +19,12 @@ public class Done_PlayerController : MonoBehaviour
 	public float fireRate;
 	 
 	private float nextFire;
+
+	void Start () {
+
+		rb = GetComponent<Rigidbody2D> () as Rigidbody2D;
+		
+	}
 	
 
 	void Update ()
@@ -29,8 +36,8 @@ public class Done_PlayerController : MonoBehaviour
 			audio.Play ();
 		}
 
-		if (Input.GetKeyDown (KeyCode.Space)){
-			rigidbody.AddForce(Vector3.up*force, ForceMode.Impulse);
+		if (Input.GetKeyDown(KeyCode.Space)){
+			rb.AddForce(Vector2.up*force, ForceMode2D.Impulse);
 		}
 	}
 
@@ -39,14 +46,13 @@ public class Done_PlayerController : MonoBehaviour
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
 
-		Vector3 movement = new Vector3 (moveHorizontal, moveVertical, 0.0f);
-		rigidbody.velocity = movement * speed;
+		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
+		rb.velocity = movement * speed;
 		
-		rigidbody.position = new Vector3
+		rb.position = new Vector2
 		(
-			Mathf.Clamp (rigidbody.position.x, boundary.xMin, boundary.xMax),
-			Mathf.Clamp (rigidbody.position.y, boundary.yMin, boundary.yMax),
-			0.0f 
+			Mathf.Clamp (rb.position.x, boundary.xMin, boundary.xMax),
+			Mathf.Clamp (rb.position.y, boundary.yMin, boundary.yMax) 
 			
 		);
 	}

@@ -5,9 +5,8 @@ public class Done_DestroyByContact : MonoBehaviour
 {
 	public GameObject explosion;
 
-	void OnTriggerEnter (Collider other)
+	void OnTriggerEnter2D (Collider2D other)
 	{
-		Debug.Log("Colpito");
 		if (other.tag == "enemy") {
 						Instantiate (explosion, transform.position, transform.rotation);
 						Destroy (other.gameObject);
