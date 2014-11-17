@@ -20,6 +20,8 @@ public class Done_PlayerController : MonoBehaviour
 	 
 	private float nextFire;
 
+	public LayerMask mask = -1;
+
 	void Start () {
 
 		rb = GetComponent<Rigidbody2D> () as Rigidbody2D;
