@@ -30,6 +30,7 @@ public class MovableWASD : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other){
 		if (other.gameObject.tag.Equals ("floor")) {
 						inAir = false;
+			canJump = true;
 				}
 		}
 
@@ -37,7 +38,7 @@ public class MovableWASD : MonoBehaviour {
 		inAir = true;
 	}
 
-	void OnTriggerStay2D(Collider2D other){
+	void OnTriggerEnter2D(Collider2D other){
 		canJump = true;
 
 		}
@@ -55,14 +56,15 @@ public class MovableWASD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isForward () && !inAir) {
+		if (isForward ()) {
 			rb.AddForce (transform.right * speed, ForceMode2D.Impulse);
 				}
-		if (isBackward () && !inAir) {
+		if (isBackward ()) {
 			rb.AddForce (transform.right * (-speed), ForceMode2D.Impulse);
 				}
 		if (isJump () && canJump) {
 			rb.AddForce (transform.up * jumpHeight, ForceMode2D.Impulse);
+			canJump = false;
 		}
 		capSpeed ();
 	}
