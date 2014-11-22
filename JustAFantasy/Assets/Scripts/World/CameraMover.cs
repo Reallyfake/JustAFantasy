@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Camera : MonoBehaviour {
+public class CameraMover : MonoBehaviour {
 
 	Transform tf = null;
 	public GameObject character;

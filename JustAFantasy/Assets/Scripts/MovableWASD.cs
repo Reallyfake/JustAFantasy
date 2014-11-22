@@ -7,7 +7,6 @@ public class MovableWASD : MonoBehaviour {
 	public float maxSpeed = 1f;
 	public float jumpHeight = 5f;
 	private Rigidbody2D rb;
-	private bool inAir = false;
 	private bool canJump = true;
 
 	// Use this for initialization
@@ -29,13 +28,11 @@ public class MovableWASD : MonoBehaviour {
 
 	void OnCollisionStay2D(Collision2D other){
 		if (other.gameObject.tag.Equals ("floor")) {
-						inAir = false;
 			canJump = true;
 				}
 		}
 
 	void OnCollisionExit2D(Collision2D other){
-		inAir = true;
 		canJump = false;
 	}
 
