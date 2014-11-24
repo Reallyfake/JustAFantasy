@@ -27,9 +27,9 @@ public class MovableWASD : MonoBehaviour {
 	}
 
 	void OnCollisionStay2D(Collision2D other){
-		if (other.gameObject.tag.Equals ("floor")) {
+		//if (other.gameObject.tag.Equals ("floor")) {
 			canJump = true;
-				}
+		//		}
 		}
 
 	void OnCollisionExit2D(Collision2D other){

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class HUD : MonoBehaviour {
@@ -9,14 +9,14 @@ public class HUD : MonoBehaviour {
 	public Camera cam;
 	private float lifeRatio;
 	private float screenRatio;
-	private Character character;
+	private CharacterStats character;
 	private GUITexture[] lifePoints;
 	private Rect r = new Rect ();
 
 	// Use this for initialization
 	void Start () {
-		character = GetComponent<Character> () as Character;
-		lifePoints = new GUITexture[character.lifePoints];
+		character = GetComponent<CharacterStats> () as CharacterStats;
+		lifePoints = new GUITexture[character.LifePoints];
 
 		lifeRatio = lifePoint.texture.width / lifePoint.texture.height;
 		screenRatio = cam.pixelWidth / cam.pixelHeight;
@@ -27,7 +27,7 @@ public class HUD : MonoBehaviour {
 		r.x = -r.width/2;
 		r.y = -r.height/2;
 
-		for (int i=0; i< character.lifePoints; i++) {
+		for (int i=0; i< character.LifePoints; i++) {
 						lifePoints [i] = Instantiate (lifePoint) as GUITexture;
 						lifePoints[i].transform.position = new Vector2 (padding.x + (i*0.05f), 1f - padding.y);
 						lifePoints[i].pixelInset = r;
@@ -39,15 +39,15 @@ public class HUD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (character.lifePoints < lifePoints.Length && lifePoints [character.lifePoints] != null) {
-						int i = character.lifePoints;
+		if (character.LifePoints < lifePoints.Length && lifePoints [character.LifePoints] != null) {
+						int i = character.LifePoints;
 						while (i<lifePoints.Length && lifePoints[i]!=null) {
 								Destroy (lifePoints [i]);
 								//lifePoints [i] = null;
 								i++;
 						}
-				} else if (character.lifePoints - 1 >= 0 && lifePoints [character.lifePoints - 1] == null) {
-			int i = character.lifePoints-1;
+				} else if (character.LifePoints - 1 >= 0 && lifePoints [character.LifePoints - 1] == null) {
+			int i = character.LifePoints-1;
 			while(i>=0 && lifePoints[i]==null){
 				lifePoints [i] = Instantiate (lifePoint) as GUITexture;
 				lifePoints[i].transform.position = new Vector2 (padding.x + (i*0.05f), 1f - padding.y);
