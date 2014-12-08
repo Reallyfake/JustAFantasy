@@ -35,12 +35,12 @@ public class HUD : MonoBehaviour {
 		lifePoints = new GameObject[character.LifePoints];
 
 
-		lifeRatio = lifePointFull.width / lifePointFull.height;
-		screenRatio = Screen.width/Screen.height;
+		lifeRatio = (float)lifePointFull.width / lifePointFull.height;
+		screenRatio = (float)Screen.width/Screen.height;
 
 
-		r.width = (Screen.width/screenRatio) * 0.05f;
-		r.height = Screen.height * 0.05f * lifeRatio;
+		r.width = (Screen.width/screenRatio) * 0.04f;
+		r.height = Screen.height * 0.04f / lifeRatio;
 		r.x = -r.width/2;
 		r.y = -r.height/2;
 

@@ -7,7 +7,11 @@ public class MovableWASD : MonoBehaviour {
 	public float maxSpeed = 1f;
 	public float jumpHeight = 5f;
 	private Rigidbody2D rb;
-	private bool canJump = true;
+	private bool canJump = false;
+
+	public void allowJump(){
+				canJump = true;
+		}
 
 	// Use this for initialization
 	void Start () {
@@ -26,17 +30,6 @@ public class MovableWASD : MonoBehaviour {
 		return Input.GetKey (KeyCode.S) || Input.GetKey(KeyCode.Space);
 	}
 
-	void OnCollisionStay2D(Collision2D other){
-		//if (other.gameObject.tag.Equals ("floor")) {
-			canJump = true;
-		//		}
-		}
-
-	void OnCollisionExit2D(Collision2D other){
-		canJump = false;
-	}
-
-
 	void capSpeed(){
 		if (rb.velocity.x > maxSpeed)
 						rb.velocity = new Vector2 (maxSpeed, rb.velocity.y);
@@ -53,7 +46,7 @@ public class MovableWASD : MonoBehaviour {
 			rb.AddForce (transform.right * (-speed) * Time.deltaTime * 100f, ForceMode2D.Force);
 				}
 		if (isJump () && canJump) {
-			rb.AddForce (transform.up * jumpHeight, ForceMode2D.Impulse);
+			rb.AddForce (transform.up * jumpHeight * 10, ForceMode2D.Impulse);
 			canJump = false;
 		}
 		capSpeed ();
