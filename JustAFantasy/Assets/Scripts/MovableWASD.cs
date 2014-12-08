@@ -15,15 +15,15 @@ public class MovableWASD : MonoBehaviour {
 	}
 
 	bool isForward(){
-		return Input.GetKey (KeyCode.D);
+		return Input.GetKey (KeyCode.RightArrow);
 		}
 
 	bool isBackward(){
-		return Input.GetKey (KeyCode.A);
+		return Input.GetKey (KeyCode.LeftArrow);
 	}
 
 	bool isJump(){
-		return Input.GetKey (KeyCode.W) || Input.GetKey(KeyCode.Space);
+		return Input.GetKey (KeyCode.S) || Input.GetKey(KeyCode.Space);
 	}
 
 	void OnCollisionStay2D(Collision2D other){
