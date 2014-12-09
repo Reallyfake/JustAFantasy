@@ -3,9 +3,9 @@ using System.Collections;
 
 public class MovableWASD : MonoBehaviour {
 
-	public float speed = 1f;
-	public float maxSpeed = 1f;
-	public float jumpHeight = 5f;
+	public float speed = 50f;
+	public float maxSpeed = 8f;
+	public float jumpHeight = 2.7f;
 	private Rigidbody2D rb;
 	private bool canJump = false;
 
