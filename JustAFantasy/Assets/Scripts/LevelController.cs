@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameController : MonoBehaviour {
+public class LevelController : MonoBehaviour {
 
 	private GameObject WeaponWheel;
 	private bool is_running = false;
