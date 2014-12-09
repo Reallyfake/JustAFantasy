@@ -4,8 +4,8 @@ using System.Collections;
 public class jfWwResizer : MonoBehaviour {
 
 	private float Rez;
-	private const int dWidth = 1024;
-	private const int dHeight = 768;
+	private const int dWidth = 1280;
+	private const int dHeight = 720;
 	private const float oldRatio = (float)dWidth / dHeight;
 	private int screenWidth = Screen.width;
 	private int screenHeight = Screen.height;

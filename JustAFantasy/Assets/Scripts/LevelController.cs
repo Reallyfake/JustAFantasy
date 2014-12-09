@@ -4,10 +4,12 @@ using System.Collections;
 public class LevelController : MonoBehaviour {
 
 	private GameObject WeaponWheel;
+	private HUDController hud;
 	private bool is_running = false;
 	// Use this for initialization
 	void Start () {
 		WeaponWheel = transform.GetChild (0).gameObject;
+		hud = transform.GetChild (2).gameObject.GetComponent<HUDController> () as HUDController;
 	}
 	
 	// Update is called once per frame
