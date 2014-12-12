@@ -5,6 +5,7 @@ public class LevelController : MonoBehaviour {
 
 	private GameObject WeaponWheel;
     private GameObject Player;
+    private GameObject Weapons;
 	private HUDController hud;
 	private bool is_running = false;
 	// Use this for initialization
@@ -12,6 +13,7 @@ public class LevelController : MonoBehaviour {
 		WeaponWheel = transform.GetChild (0).gameObject;
 		hud = transform.GetChild (2).gameObject.GetComponent<HUDController> () as HUDController;
         Player = transform.GetChild(3).gameObject;
+        Weapons = transform.GetChild(4).gameObject;
 	}
 	
 	// Update is called once per frame
@@ -30,7 +32,7 @@ public class LevelController : MonoBehaviour {
         {
             (Player.transform.GetChild(1).gameObject.GetComponent<jfWeapon>() as jfWeapon).openFire();
         }
-
+        /*
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             GameObject weap = Instantiate((WeaponWheel.transform.GetChild(1 + 1).gameObject.GetComponent<jfWwWeapon>() as jfWwWeapon).jf_Weapon.gameObject, Player.transform.GetChild(1).gameObject.transform.position, Player.transform.GetChild(1).gameObject.transform.rotation) as GameObject;
@@ -42,7 +44,7 @@ public class LevelController : MonoBehaviour {
             GameObject weap = Instantiate((WeaponWheel.transform.GetChild(2 + 1).gameObject.GetComponent<jfWwWeapon>() as jfWwWeapon).jf_Weapon.gameObject, Player.transform.GetChild(1).gameObject.transform.position, Player.transform.GetChild(1).gameObject.transform.rotation) as GameObject;
             Destroy(Player.transform.GetChild(1).gameObject);
             weap.transform.parent = Player.gameObject.transform;
-        }
+        }*/
 	}
 
     private void Pause()
