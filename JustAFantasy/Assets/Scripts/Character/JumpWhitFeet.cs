@@ -7,4 +7,10 @@ public class JumpWhitFeet : MonoBehaviour {
 
 		(transform.parent.GetComponent<MovableWASD>() as MovableWASD).allowJump();
 	}
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+
+        (transform.parent.GetComponent<MovableWASD>() as MovableWASD).denyJump();
+    }
 }

@@ -10,12 +10,12 @@ public class jfWwWeapon : MonoBehaviour {
 		string msg;
 		if (jf_Weapon != null && (w = jf_Weapon.GetComponent("jfWeapon") as jfWeapon) != null) {
 			msg = w.weaponName + "\n";
-			if(w.ammo == -1)
+			if(w.Ammo == -1)
 				msg += "oo/oo";
 			else if(w.maxAmmo == -1)
-				msg += w.ammo.ToString() + "/oo";
+				msg += w.Ammo.ToString() + "/oo";
 			else
-				msg += w.ammo.ToString() + "/" + w.maxAmmo.ToString();
+				msg += w.Ammo.ToString() + "/" + w.maxAmmo.ToString();
 
 				}
 		else

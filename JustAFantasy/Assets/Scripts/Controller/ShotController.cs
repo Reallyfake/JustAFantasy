@@ -8,6 +8,7 @@ public class ShotController : MonoBehaviour {
 
 	// damage of one shot
 	public int damage;
+    public float lifeTime = 10f;
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
@@ -21,4 +22,11 @@ public class ShotController : MonoBehaviour {
 			}
 		}
 	}
+
+    void Update()
+    {
+        lifeTime -= Time.deltaTime;
+        if (lifeTime < 0)
+            Destroy(gameObject);
+    }
 }

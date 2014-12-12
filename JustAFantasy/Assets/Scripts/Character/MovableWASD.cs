@@ -12,6 +12,11 @@ public class MovableWASD : MonoBehaviour {
 				canJump = true;
 		}
 
+    public void denyJump()
+    {
+        canJump = false;
+    }
+
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> () as Rigidbody2D;
