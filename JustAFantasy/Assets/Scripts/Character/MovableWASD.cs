@@ -30,25 +30,23 @@ public class MovableWASD : MonoBehaviour {
 		return Input.GetKey (KeyCode.S) || Input.GetKey(KeyCode.Space);
 	}
 
-	void capSpeed(){
-		if (rb.velocity.x > maxSpeed)
-						rb.velocity = new Vector2 (maxSpeed, rb.velocity.y);
-		if (rb.velocity.x < -maxSpeed)
-						rb.velocity = new Vector2 (-maxSpeed, rb.velocity.y);
-		}
-	
 	// Update is called once per frame
 	void Update () {
 		if (isForward ()) {
-			rb.AddForce (transform.right * speed * Time.deltaTime * 100f, ForceMode2D.Force);
+						rb.velocity = new Vector2 (maxSpeed, rb.velocity.y);
+				} else {
+						if (isBackward ()) {
+								rb.velocity = new Vector2 (-maxSpeed, rb.velocity.y);
+						}else
+			{
+				if(!isForward() && ! isBackward()){
+					rb.velocity =  new Vector2(0,rb.velocity.y);
 				}
-		if (isBackward ()) {
-			rb.AddForce (transform.right * (-speed) * Time.deltaTime * 100f, ForceMode2D.Force);
+			}
 				}
 		if (isJump () && canJump) {
 			rb.AddForce (transform.up * jumpHeight * 10, ForceMode2D.Impulse);
 			canJump = false;
 		}
-		capSpeed ();
 	}
 }
