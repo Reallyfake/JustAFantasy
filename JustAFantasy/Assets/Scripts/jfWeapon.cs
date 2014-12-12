@@ -9,6 +9,8 @@ public abstract class jfWeapon : MonoBehaviour {
 
     public float fireRatio = 1.0f;
 
+    public KeyCode fastSelect;
+
     public int reload(int ammo)
     {
         Ammo += ammo;
@@ -20,6 +22,26 @@ public abstract class jfWeapon : MonoBehaviour {
         }
         else
             return 0;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(fastSelect) && transform.parent.gameObject.tag != "player")
+        {
+            if (transform.parent != null && transform.parent.gameObject.transform.parent != null)
+            {
+                GameObject weapons = transform.parent.gameObject;
+                GameObject levelController = weapons.transform.parent.gameObject;
+                GameObject player = levelController.transform.GetChild(3).gameObject;
+                GameObject oldWeapon = player.transform.GetChild(1).gameObject;
+                oldWeapon.transform.parent = weapons.transform;
+                transform.parent = player.transform;
+                transform.position = oldWeapon.transform.position;
+                transform.rotation = oldWeapon.transform.rotation;
+                renderer.enabled = true;
+                oldWeapon.renderer.enabled = false;
+            }
+        }
     }
 
     abstract public void openFire();

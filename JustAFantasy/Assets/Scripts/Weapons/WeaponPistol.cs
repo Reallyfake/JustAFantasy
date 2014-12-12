@@ -5,7 +5,6 @@ public class WeaponPistol : jfWeapon {
 
     private GameObject shotSpawn;
     public GameObject shoot;
-    public KeyCode fastSelect;
 
     private float lastShotTime = 0f;
 
@@ -18,26 +17,6 @@ public class WeaponPistol : jfWeapon {
         else
             renderer.enabled = false;
 	}
-
-    void Update()
-    {
-        if (Input.GetKeyDown(fastSelect) && transform.parent.gameObject.tag != "player")
-        {
-            if (transform.parent != null && transform.parent.gameObject.transform.parent != null)
-            {
-                GameObject weapons = transform.parent.gameObject;
-                GameObject levelController = weapons.transform.parent.gameObject;
-                GameObject player = levelController.transform.GetChild(3).gameObject;
-                GameObject oldWeapon = player.transform.GetChild(1).gameObject;
-                oldWeapon.transform.parent = weapons.transform;
-                transform.parent = player.transform;
-                transform.position = oldWeapon.transform.position;
-                transform.rotation = oldWeapon.transform.rotation;
-                renderer.enabled = true;
-                oldWeapon.renderer.enabled = false;
-            }
-        }
-    }
 
     public override void openFire()
     {
