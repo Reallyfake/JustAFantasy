@@ -35,7 +35,7 @@ public class Turret : MonoBehaviour {
 	void Update () {
 
 		// find player position
-		target = GameObject.FindGameObjectWithTag("player").GetComponent<Transform> () as Transform;
+		target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform> () as Transform;
 		Vector2 dir = target.position - tf.position;
 
 		// calculate rotation of the turret to look at the target

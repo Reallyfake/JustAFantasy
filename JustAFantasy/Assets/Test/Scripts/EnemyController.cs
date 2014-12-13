@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Rigidbody2D tg = GameObject.FindGameObjectWithTag ("player").GetComponent<Rigidbody2D> () as Rigidbody2D;
+		Rigidbody2D tg = GameObject.FindGameObjectWithTag ("Player").GetComponent<Rigidbody2D> () as Rigidbody2D;
 		Vector2 v_diff = tarTf.position - tg.position;
 		//Debug.Log ("Ciao");
 
@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour {
 								isLeft = false;
 						}
 				}
-		if (hit.collider!=null && (hit.collider.tag == "player" || hit.collider.tag=="enemy") && Time.time > nextFire){
+		if (hit.collider!=null && (hit.collider.tag == "Player" || hit.collider.tag=="Enemy") && Time.time > nextFire){
 			float atan2 = Mathf.Atan2 ( v_diff.y, v_diff.x );
 			Debug.Log ("Culo");
 			Debug.Log (v_diff);

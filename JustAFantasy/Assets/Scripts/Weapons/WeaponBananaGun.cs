@@ -12,12 +12,9 @@ public class WeaponBananaGun : jfWeapon
     // Use this for initialization
     void Start()
     {
-
+        base.OnStart();
         shotSpawn = transform.GetChild(0).gameObject;
-        if (transform.parent.gameObject.tag == "player")
-            renderer.enabled = true;
-        else
-            renderer.enabled = false;
+        
     }
 
     public override void openFire()

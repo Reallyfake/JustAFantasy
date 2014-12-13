@@ -34,7 +34,7 @@ public class EnemyFighter : MonoBehaviour {
 		hit=Physics2D.Linecast(sightStart.position, sightEnd.position).collider;
 
 		//have I seen a player?
-		if (hit!= null && hit.tag=="player"){
+		if (hit!= null && hit.tag=="Player"){
 			Attack();
 		} else {
 			Patrol ();

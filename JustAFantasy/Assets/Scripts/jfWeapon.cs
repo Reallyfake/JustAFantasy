@@ -11,6 +11,14 @@ public abstract class jfWeapon : MonoBehaviour {
 
     public KeyCode fastSelect;
 
+    protected void OnStart()
+    {
+        if (transform.parent.gameObject.tag == "Player")
+            renderer.enabled = true;
+        else
+            renderer.enabled = false;
+    }
+
     public int reload(int ammo)
     {
         Ammo += ammo;
@@ -26,7 +34,7 @@ public abstract class jfWeapon : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(fastSelect) && transform.parent.gameObject.tag != "player")
+        if (Input.GetKeyDown(fastSelect) && transform.parent.gameObject.tag != "Player")
         {
             if (transform.parent != null && transform.parent.gameObject.transform.parent != null)
             {

@@ -32,7 +32,7 @@ public class ParabolicMover : MonoBehaviour {
 		tf = GetComponent<Transform> () as Transform;
 		xin = tf.position.x;
 		yin = tf.position.y;
-		target=GameObject.FindGameObjectWithTag("player").GetComponent<Transform> () as Transform;
+		target=GameObject.FindGameObjectWithTag("Player").GetComponent<Transform> () as Transform;
 		xt = target.position.x;
 		yt = target.position.y;
 		xrel = (xt - xin);

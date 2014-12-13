@@ -12,7 +12,7 @@ public class ShotController : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		if (other.tag == "enemy") {
+		if (other.tag == "Enemy") {
 			Destroy(gameObject);
 			enemyHealth = other.GetComponent<Energy>();
 			if(enemyHealth != null){
