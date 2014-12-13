@@ -5,16 +5,16 @@ public class EnemyShooting : MonoBehaviour {
 
 	// shot and it spawn position
 	public GameObject shot;
-	public Transform shotSpawn;
+	private Transform shotSpawn;
 
 	// my transform
-	public Transform tf;
+	private Transform tf;
 
 	// start and end of my sight line
-	public Transform sightStart, sightEnd;
+	private Transform sightStart, sightEnd;
 
 	// have i seen the player?
-	public bool found = false;
+	private bool found = false;
 
 	// patrol bounds
 	public float xMin,xMax;
@@ -29,6 +29,9 @@ public class EnemyShooting : MonoBehaviour {
 	Collider2D hit;
 
 	void Start(){
+        shotSpawn = transform.GetChild(0).gameObject.transform;
+        sightStart = transform.GetChild(1).gameObject.transform;
+        sightEnd = transform.GetChild(2).gameObject.transform;
 		tf = GetComponent<Transform> () as Transform;
 	}
 

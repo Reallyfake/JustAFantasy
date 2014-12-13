@@ -14,10 +14,28 @@ public class LevelController : MonoBehaviour {
 		hud = transform.GetChild (2).gameObject.GetComponent<HUDController> () as HUDController;
         Player = transform.GetChild(3).gameObject;
         Weapons = transform.GetChild(4).gameObject;
+        hud.setWeapon(Player.transform.GetChild(1).gameObject.GetComponent<jfWeapon>() as jfWeapon);
 	}
+
+    private void IsDead()
+    {
+        Application.LoadLevel("MainMenu");
+    }
+
+    private void OnPlayerHit()
+    {
+        Debug.Log("Colpito");
+        hud.removeLife();
+    }
+
+    private void WeaponChanged(jfWeapon w)
+    {
+        hud.setWeapon(w);
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        hud.updateAmmo();
 		if (Input.GetKeyDown (KeyCode.P)) {
             Pause();
 		}
@@ -32,19 +50,6 @@ public class LevelController : MonoBehaviour {
         {
             (Player.transform.GetChild(1).gameObject.GetComponent<jfWeapon>() as jfWeapon).openFire();
         }
-        /*
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            GameObject weap = Instantiate((WeaponWheel.transform.GetChild(1 + 1).gameObject.GetComponent<jfWwWeapon>() as jfWwWeapon).jf_Weapon.gameObject, Player.transform.GetChild(1).gameObject.transform.position, Player.transform.GetChild(1).gameObject.transform.rotation) as GameObject;
-            Destroy(Player.transform.GetChild(1).gameObject);
-            weap.transform.parent = Player.gameObject.transform;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            GameObject weap = Instantiate((WeaponWheel.transform.GetChild(2 + 1).gameObject.GetComponent<jfWwWeapon>() as jfWwWeapon).jf_Weapon.gameObject, Player.transform.GetChild(1).gameObject.transform.position, Player.transform.GetChild(1).gameObject.transform.rotation) as GameObject;
-            Destroy(Player.transform.GetChild(1).gameObject);
-            weap.transform.parent = Player.gameObject.transform;
-        }*/
 	}
 
     private void Pause()

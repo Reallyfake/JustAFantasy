@@ -48,6 +48,7 @@ public abstract class jfWeapon : MonoBehaviour {
                 transform.rotation = oldWeapon.transform.rotation;
                 renderer.enabled = true;
                 oldWeapon.renderer.enabled = false;
+                levelController.SendMessage("WeaponChanged", this);
             }
         }
     }

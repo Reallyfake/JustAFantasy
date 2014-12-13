@@ -6,17 +6,27 @@ public class LifeBar : MonoBehaviour {
 	private int currentLife = 5;
 	private const int maxLife = 10;
 
-	public void addLifePoint(){
-		if (currentLife < 10)
-						currentLife++;
-		setLifePoints (currentLife);
-		}
+    void Start()
+    {
+        setLifePoints(currentLife);
+    }
 
-	public void removeLifePoint(){
-		if (currentLife > 0)
-						currentLife--;
+	public void addLifePoint()
+    {
+		if (currentLife < 10)
+			currentLife++;
 		setLifePoints (currentLife);
-		}
+	}
+
+	public void removeLifePoint()
+    {
+		if (currentLife > 0)
+			currentLife--;
+		setLifePoints (currentLife);
+        if (currentLife == 0)
+            if (transform.parent != null)
+                transform.parent.SendMessage("IsDead");
+	}
 
 	public void setLifePoints(int n){
 		for (int i=0; i<n; i++) {
