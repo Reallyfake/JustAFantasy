@@ -17,7 +17,7 @@ public class WeaponBananaGun : jfWeapon
         
     }
 
-    public override void openFire()
+    public override void OpenFire()
     {
         if ((Time.time - lastShotTime) >= fireRatio && (Ammo > 0 || Ammo == -1))
         {

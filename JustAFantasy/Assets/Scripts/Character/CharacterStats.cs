@@ -6,22 +6,11 @@ public class CharacterStats : MonoBehaviour {
 	public int LifePoints = 5;
 	public float Energy = 0.5f;
 
-	// Use this for initialization
-	void Start () {
-	    
-	}
-
-    void OnTriggerEnter2D(Collider2D other)
+    private void RemoveLife(int dmg)
     {
-        if (other.gameObject.tag.Equals("EnemyFire"))
-        {
-            Destroy(other.gameObject);
-            transform.parent.SendMessage("OnPlayerHit");
-        }
+        LifePoints -= dmg;
+        if (LifePoints <= 0)
+            if (transform.parent != null)
+                transform.parent.SendMessage("IsDead");
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

@@ -17,6 +17,14 @@ public class LevelController : MonoBehaviour {
         hud.setWeapon(Player.transform.GetChild(1).gameObject.GetComponent<jfWeapon>() as jfWeapon);
 	}
 
+    private void OnPlayerHit(int dmg)
+    {
+        Debug.Log("hit");
+        for (int i = 0; i < dmg; i++)
+            hud.removeLife();
+        Player.SendMessage("RemoveLife", dmg);
+    }
+
     private void IsDead()
     {
         Application.LoadLevel("MainMenu");
@@ -28,9 +36,14 @@ public class LevelController : MonoBehaviour {
         hud.removeLife();
     }
 
-    private void WeaponChanged(jfWeapon w)
+    private void ChangeWeapon(GameObject w)
     {
-        hud.setWeapon(w);
+        Player.SendMessage("ChangeWeapon", w, SendMessageOptions.DontRequireReceiver);
+    }
+
+    private void WeaponChanged(GameObject w)
+    {
+        hud.setWeapon(w.GetComponent<jfWeapon>() as jfWeapon);
     }
 	
 	// Update is called once per frame
@@ -48,7 +61,7 @@ public class LevelController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            (Player.transform.GetChild(1).gameObject.GetComponent<jfWeapon>() as jfWeapon).openFire();
+            Player.SendMessage("Shoot");
         }
 	}
 

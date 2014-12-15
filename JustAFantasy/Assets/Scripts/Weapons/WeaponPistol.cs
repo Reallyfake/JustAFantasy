@@ -12,10 +12,9 @@ public class WeaponPistol : jfWeapon {
 	void Start () {
         base.OnStart();
         shotSpawn = transform.GetChild(0).gameObject;
-        
 	}
 
-    public override void openFire()
+    public override void OpenFire()
     {
         if((Time.time - lastShotTime) >= fireRatio && (Ammo>0 || Ammo == -1))
         {

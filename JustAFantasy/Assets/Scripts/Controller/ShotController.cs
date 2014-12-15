@@ -9,9 +9,10 @@ public class ShotController : MonoBehaviour {
 	// damage of one shot
 	public int damage;
     public float lifeTime = 10f;
-
+    /*
 	void OnTriggerEnter2D (Collider2D other)
 	{
+        /*
 		if (other.tag == "Enemy") {
 			Destroy(gameObject);
 			enemyHealth = other.GetComponent<Energy>();
@@ -21,8 +22,9 @@ public class ShotController : MonoBehaviour {
 				enemyHealth.Gotcha(damage);				
 			}
 		}
+         *\/
 	}
-
+    */
     void Update()
     {
         lifeTime -= Time.deltaTime;

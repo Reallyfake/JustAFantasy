@@ -23,12 +23,11 @@ public class LifeBar : MonoBehaviour {
 		if (currentLife > 0)
 			currentLife--;
 		setLifePoints (currentLife);
-        if (currentLife == 0)
-            if (transform.parent != null)
-                transform.parent.SendMessage("IsDead");
 	}
 
 	public void setLifePoints(int n){
+        if (n < 0)
+            n = 0;
 		for (int i=0; i<n; i++) {
 			(transform.GetChild(i+1).gameObject.GetComponent<GUITexture> ()as GUITexture).enabled = true;
 				}

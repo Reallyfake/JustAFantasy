@@ -13,7 +13,7 @@ public abstract class jfWeapon : MonoBehaviour {
 
     protected void OnStart()
     {
-        if (transform.parent.gameObject.tag == "Player")
+        if (transform.parent != null && transform.parent.gameObject.tag == "Player")
             renderer.enabled = true;
         else
             renderer.enabled = false;
@@ -34,10 +34,11 @@ public abstract class jfWeapon : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(fastSelect) && transform.parent.gameObject.tag != "Player")
-        {
+        if (Input.GetKeyDown(fastSelect) && transform.parent != null && transform.parent.gameObject.tag != "Player")
+        {/*
             if (transform.parent != null && transform.parent.gameObject.transform.parent != null)
             {
+                
                 GameObject weapons = transform.parent.gameObject;
                 GameObject levelController = weapons.transform.parent.gameObject;
                 GameObject player = levelController.transform.GetChild(3).gameObject;
@@ -48,10 +49,16 @@ public abstract class jfWeapon : MonoBehaviour {
                 transform.rotation = oldWeapon.transform.rotation;
                 renderer.enabled = true;
                 oldWeapon.renderer.enabled = false;
-                levelController.SendMessage("WeaponChanged", this);
-            }
+                */
+                transform.parent.SendMessage("ChangeWeapon", transform.gameObject, SendMessageOptions.DontRequireReceiver);
+            //}
         }
     }
 
-    abstract public void openFire();
+    void Shoot()
+    {
+        OpenFire();
+    }
+
+    abstract public void OpenFire();
 }

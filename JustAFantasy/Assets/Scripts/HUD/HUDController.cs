@@ -7,18 +7,16 @@ public class HUDController : MonoBehaviour {
     private WeaponBar wb;
 
 	// Use this for initialization
-	void Start () {
-		lb = transform.GetChild (0).gameObject.GetComponent<LifeBar> () as LifeBar;
+    void Start()
+    {
+        lb = transform.GetChild(0).gameObject.GetComponent<LifeBar>() as LifeBar;
 
         wb = transform.GetChild(2).gameObject.GetComponent<WeaponBar>() as WeaponBar;
-	}
+    }
 
     void IsDead()
     {
-        if (transform.parent != null)
-        {
-            transform.parent.SendMessage("IsDead");
-        }
+        
     }
 
     public void setWeapon(jfWeapon w){
@@ -29,16 +27,19 @@ public class HUDController : MonoBehaviour {
     {
         wb.UpdateWeaponAmmo();
     }
-	
-	public void setLife(int n){
-				lb.setLifePoints (n);
-		}
 
-	public void addLife(){
-				lb.addLifePoint ();
-		}
+    public void setLife(int n)
+    {
+        lb.setLifePoints(n);
+    }
 
-	public void removeLife(){
-				lb.removeLifePoint ();
-		}
+    public void addLife()
+    {
+        lb.addLifePoint();
+    }
+
+    public void removeLife()
+    {
+        lb.removeLifePoint();
+    }
 }
