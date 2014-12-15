@@ -61,14 +61,20 @@ public class LevelController : MonoBehaviour {
     private void showWW()
     {
         if (is_running)
+        {
             StopCoroutine("DragWWTo");
+            is_running = false;
+        }
         StartCoroutine("DragWWTo", 0f);
     }
 
     private void hideWW()
     {
         if (is_running)
+        {
             StopCoroutine("DragWWTo");
+            is_running = false;
+        }
         StartCoroutine("DragWWTo", 1f);
     }
 
