@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyShooting : MonoBehaviour {
+public class EnemyShooting : jfEnemyController {
 
 	// shot and it spawn position
 	public GameObject shot;

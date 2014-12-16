@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Turret : MonoBehaviour {
+public class Turret : jfEnemyController {
 
 	// turret transform
 	Transform tf;

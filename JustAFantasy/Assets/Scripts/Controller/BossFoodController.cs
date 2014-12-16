@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BossFoodController : MonoBehaviour {
+public class BossFoodController : jfEnemyController {
 
 
 	//what should i ShotController and where?

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyFighter : MonoBehaviour {
+public class EnemyFighter : jfEnemyController {
 
 	// my transform
 	public Transform tf;
