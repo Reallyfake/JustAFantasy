@@ -22,14 +22,22 @@ public class ButtonTrigger : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Player") {
 			//scompare nel terreno
-			tf.position = new Vector3(tf.position.x, -newPosiitonY, newPositionZ);
+			tf.position = new Vector3(tf.position.x, newPosiitonY, newPositionZ);
 			//modifico variabile x attivare evento
-			SmashingTrigger();
-			
+			if(movingElement.GetComponent<Smashing>().startMoving == false){
+				SmashingTrigger();
+			}
+			if(movingElement.GetComponent<MovingPlatform>().startMoving == false){
+				MovingTrigger();
+			}
 		}
 	}
 
 	void SmashingTrigger(){
 		movingElement.GetComponent<Smashing>().startMoving = true;
+	}
+
+	void MovingTrigger(){
+		movingElement.GetComponent<MovingPlatform> ().startMoving = true;
 	}
 }
