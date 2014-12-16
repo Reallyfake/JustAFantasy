@@ -6,9 +6,16 @@ public class JumpWhitFeet : MonoBehaviour {
     private bool isRunning = false;
 
 	void OnTriggerEnter2D(Collider2D other){
-        
-        if(!other.gameObject.tag.Equals("FriendFire") && !other.gameObject.tag.Equals("EnemyFire"))
-		    (transform.parent.GetComponent<MovableWASD>() as MovableWASD).allowJump();
+
+        if (!other.gameObject.tag.Equals("FriendFire") && !other.gameObject.tag.Equals("EnemyFire"))
+        {
+            if (isRunning)
+            {
+                StopCoroutine(denyJump());
+                isRunning = false;
+            }
+            (transform.parent.GetComponent<MovableWASD>() as MovableWASD).allowJump();
+        }
 	}
 
     void OnTriggerStay2D(Collider2D other)
