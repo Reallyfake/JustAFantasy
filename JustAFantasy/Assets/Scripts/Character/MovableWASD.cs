@@ -21,6 +21,8 @@ public class MovableWASD : MonoBehaviour {
     public void denyJump()
     {
         canJump = false;
+        if (anim != null)
+            anim.SetBool("isJumping", false);
     }
 
 	// Use this for initialization
@@ -73,6 +75,8 @@ public class MovableWASD : MonoBehaviour {
         {
             rb.AddForce(transform.up * jumpHeight * 10, ForceMode2D.Impulse);
             canJump = false;
+            if (anim != null)
+                anim.SetBool("isJumping", true);
         }
         if (rb.velocity.x != 0)
         {
@@ -82,8 +86,11 @@ public class MovableWASD : MonoBehaviour {
         }
         else
         {
-            anim.SetBool("isRunning", false);
+            if (anim != null)
+                anim.SetBool("isRunning", false);
         }
         grounded = Physics2D.OverlapCircle(feet.transform.position, .5f, WhatIsGround);
+        if (anim != null)
+            anim.SetBool("inAir", !grounded);
     }
 }
