@@ -21,10 +21,16 @@ public class WeaponBananaGun : jfWeapon
     {
         if ((Time.time - lastShotTime) >= fireRatio && (Ammo > 0 || Ammo == -1))
         {
-            GameObject o = Instantiate(shoot, transform.position, transform.rotation) as GameObject;
-
-            if (transform.lossyScale.x < 0)
-                (o.GetComponent<LinearMover>() as LinearMover).speed *= -1;
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                GameObject o = Instantiate(shoot, transform.position, Quaternion.AngleAxis(90, Vector3.forward)) as GameObject;
+            }
+            else
+            {
+                GameObject o = Instantiate(shoot, transform.position, transform.rotation) as GameObject;
+                if (transform.lossyScale.x < 0)
+                    (o.GetComponent<LinearMover>() as LinearMover).speed *= -1;
+            }
             lastShotTime = Time.time;
 
             if (Ammo != -1)

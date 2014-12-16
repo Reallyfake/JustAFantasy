@@ -11,7 +11,6 @@ public class MovableWASD : MonoBehaviour {
     public LayerMask WhatIsGround;
     private GameObject feet;
     private Animator anim;
-    private bool lookAhead = true;
     private bool canMove = true;
 
     public void allowJump()
