@@ -38,7 +38,7 @@ public class JumpWhitFeet : MonoBehaviour {
     IEnumerator denyJump()
     {
         isRunning = true;
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.1f);
         (transform.parent.GetComponent<MovableWASD>() as MovableWASD).denyJump();
         isRunning = false;
     }
