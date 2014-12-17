@@ -13,9 +13,6 @@ public class EnemyGrenading : jfEnemyController {
 	// start and end of my sight line
 	private Transform sightStart, sightEnd;
 
-	// have i seen the player?
-	private bool found = false;
-
 	// patrol bounds
 	public float xMin,xMax;
 

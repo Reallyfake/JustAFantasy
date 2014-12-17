@@ -6,7 +6,7 @@ public abstract class jfWeapon : MonoBehaviour {
 	public int Ammo = 0;
 	public int maxAmmo = -1;
 	public string weaponName = "";
-	public bool unlocked;
+	public bool unlocked = true;
 
     public float fireRatio = 1.0f;
 
@@ -35,7 +35,7 @@ public abstract class jfWeapon : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(fastSelect) && transform.parent != null && transform.parent.gameObject.tag != "Player")
+        if (Input.GetKeyDown(fastSelect) && unlocked && transform.parent != null && transform.parent.gameObject.tag != "Player")
         {
             transform.parent.SendMessage("ChangeWeapon", transform.gameObject, SendMessageOptions.DontRequireReceiver);
         }
