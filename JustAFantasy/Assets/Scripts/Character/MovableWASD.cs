@@ -10,6 +10,7 @@ public class MovableWASD : MonoBehaviour {
     public bool grounded = false;
     public LayerMask WhatIsGround;
     private GameObject feet;
+    private jfWeapon weapon;
     private Animator anim;
     private bool canMove = true;
 
@@ -21,13 +22,13 @@ public class MovableWASD : MonoBehaviour {
     public void denyJump()
     {
         canJump = false;
-        if (anim != null)
-            anim.SetBool("isJumping", false);
     }
 
 	// Use this for initialization
     void Start()
     {
+        if(transform.GetChild(1).gameObject != null)
+            weapon = transform.GetChild(1).gameObject.GetComponent<jfWeapon>() as jfWeapon;
         rb = GetComponent<Rigidbody2D>() as Rigidbody2D;
         feet = transform.GetChild(0).gameObject;
         anim = this.GetComponent<Animator>() as Animator;
@@ -76,22 +77,32 @@ public class MovableWASD : MonoBehaviour {
             rb.AddForce(transform.up * jumpHeight * 10, ForceMode2D.Impulse);
             canJump = false;
             if (anim != null)
-                anim.SetBool("isJumping", true);
+                anim.SetTrigger("Jumped");
+
+            if (weapon != null)
+                weapon.setTrigger("Jumped");
+            
         }
         if (rb.velocity.x != 0)
         {
-            
+
             if (anim != null)
                 anim.SetBool("isRunning", true);
+            if (weapon != null)
+                weapon.setBool("isRunning", true);
         }
         else
         {
             if (anim != null)
                 anim.SetBool("isRunning", false);
+            if (weapon != null)
+                weapon.setBool("isRunning", false);
         }
         grounded = Physics2D.OverlapCircle(feet.transform.position, .5f, WhatIsGround);
         if (anim != null)
             anim.SetBool("inAir", !grounded);
+        if (weapon != null)
+            weapon.setBool("inAir", !grounded);
     }
 
     void SpikeHit(Vector3 spikePos)

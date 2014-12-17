@@ -7,6 +7,7 @@ public class WeaponPistol : jfWeapon {
     public GameObject shoot;
 
     private float lastShotTime = 0f;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,8 @@ public class WeaponPistol : jfWeapon {
             }
             else
             {
+                if (anim != null)
+                    anim.SetTrigger("isShooting");
                 GameObject o = Instantiate(shoot, transform.position, transform.rotation) as GameObject;
                 if (transform.lossyScale.x < 0)
                     (o.GetComponent<LinearMover>() as LinearMover).speed *= -1;

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public abstract class jfWeapon : MonoBehaviour {
 
@@ -12,8 +13,11 @@ public abstract class jfWeapon : MonoBehaviour {
 
     public KeyCode fastSelect;
 
+    protected Animator anim;
+
     protected void OnStart()
     {
+        anim = gameObject.GetComponent<Animator>() as Animator;
         if (transform.parent != null && transform.parent.gameObject.tag == "Player")
             renderer.enabled = true;
         else
@@ -44,6 +48,16 @@ public abstract class jfWeapon : MonoBehaviour {
     void Shoot()
     {
         OpenFire();
+    }
+
+    public void setTrigger(string trigger)
+    {
+        anim.SetTrigger(trigger);
+    }
+
+    public void setBool(string var, bool val)
+    {
+        anim.SetBool(var, val);
     }
 
     abstract public void OpenFire();
