@@ -27,6 +27,14 @@ public class CharacterInteractions : MonoBehaviour {
 		}
 	}
 
+    void lootItem(string Effect)
+    {
+        if (transform.parent != null)
+        {
+            transform.parent.SendMessage("exeCommand", Effect, SendMessageOptions.DontRequireReceiver);
+        }
+    }
+
 
     void Shoot()
     {

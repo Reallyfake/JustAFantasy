@@ -17,6 +17,39 @@ public class LevelController : MonoBehaviour {
         hud.setWeapon(Player.transform.GetChild(1).gameObject.GetComponent<jfWeapon>() as jfWeapon);
 	}
 
+    private void exeCommand(string instructions)
+    {
+        string[] commands = instructions.Split(';');
+        foreach (var instruction in commands)
+        {
+            Debug.Log(instruction);
+            //command[0] => funzione, command[1] => parametri
+            if (instruction.Length > 2)
+            {
+                string[] command = instruction.Split(':');
+                if (command[0].Equals("Health"))
+                {
+                    int hp = int.Parse(command[1]);
+                    if (hp >= 0)
+                    {
+                        for (int i = 0; i < hp; i++)
+                        {
+                            hud.addLife();
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i > hp; i--)
+                        {
+                            hud.removeLife();
+                        }
+                    }
+                    Player.SendMessage("AddLife", hp);
+                }
+            }
+        }
+    }
+
     private void OnPlayerHit(int dmg)
     {
         Debug.Log("hit");
