@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class jfCommand : MonoBehaviour {
+public class Lootable : MonoBehaviour {
 
     public string Effect;
     public bool destroyOnContact = true;
