@@ -6,6 +6,7 @@ public abstract class jfWeapon : MonoBehaviour {
 	public int Ammo = 0;
 	public int maxAmmo = -1;
 	public string weaponName = "";
+	public bool unlocked;
 
     public float fireRatio = 1.0f;
 
