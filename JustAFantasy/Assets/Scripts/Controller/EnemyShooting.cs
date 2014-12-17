@@ -7,9 +7,6 @@ public class EnemyShooting : jfEnemyController {
 	public GameObject shot;
 	private Transform shotSpawn;
 
-	// my transform
-	private Transform tf;
-
 	// start and end of my sight line
 	private Transform sightStart, sightEnd;
 
@@ -32,7 +29,6 @@ public class EnemyShooting : jfEnemyController {
         shotSpawn = transform.GetChild(0).gameObject.transform;
         sightStart = transform.GetChild(1).gameObject.transform;
         sightEnd = transform.GetChild(2).gameObject.transform;
-		tf = GetComponent<Transform> () as Transform;
 	}
 
 	void Update () {
@@ -49,11 +45,11 @@ public class EnemyShooting : jfEnemyController {
 	}
 
 	void Patrol () {
-		if (tf.position.x > xMax || tf.position.x < xMin){
-			tf.Rotate(new Vector2(0,180));
-			tf.Translate(Vector2.right*speed);
+		if (transform.localPosition.x > xMax || transform.localPosition.x < xMin){
+			transform.Rotate(new Vector2(0,180));
+			transform.Translate(Vector2.right*speed);
 		} else {
-			tf.Translate(Vector2.right*speed);
+			transform.Translate(Vector2.right*speed);
 		}
 	}
 
