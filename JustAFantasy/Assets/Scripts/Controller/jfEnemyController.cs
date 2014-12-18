@@ -26,10 +26,10 @@ public abstract class jfEnemyController : MonoBehaviour {
 
     IEnumerator OnHitLight()
     {
-        Color normal = this.GetComponent<SpriteRenderer>().material.color;
-        this.GetComponent<SpriteRenderer>().material.color = Color.green;
+        Color normal = transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().material.color;
+        transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().material.color = Color.green;
         yield return new WaitForSeconds(.4f);
-        this.GetComponent<SpriteRenderer>().material.color = normal;
+        transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().material.color = normal;
     }
 
     void OnDie()

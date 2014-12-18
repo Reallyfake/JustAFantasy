@@ -14,7 +14,7 @@ public class LevelController : MonoBehaviour {
 		hud = transform.GetChild (2).gameObject.GetComponent<HUDController> () as HUDController;
         Player = transform.GetChild(3).gameObject;
         Weapons = transform.GetChild(4).gameObject;
-        hud.setWeapon(Player.transform.GetChild(1).gameObject.GetComponent<jfWeapon>() as jfWeapon);
+        hud.setWeapon(Player.transform.GetChild(3).gameObject.GetComponent<jfWeapon>() as jfWeapon);
 	}
 
     private void exeCommand(string instructions)
