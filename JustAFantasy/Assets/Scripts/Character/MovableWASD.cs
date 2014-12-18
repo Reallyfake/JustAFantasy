@@ -98,7 +98,7 @@ public class MovableWASD : MonoBehaviour {
             if (weapon != null)
                 weapon.setBool("isRunning", false);
         }
-        grounded = Physics2D.OverlapCircle(feet.transform.position, .5f, WhatIsGround);
+        grounded = Physics2D.OverlapCircle(feet.transform.position, .6f, WhatIsGround);
         if (anim != null)
             anim.SetBool("inAir", !grounded);
         if (weapon != null)
