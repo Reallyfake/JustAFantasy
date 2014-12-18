@@ -26,11 +26,15 @@ public abstract class jfWeapon : MonoBehaviour {
 
     public int reload(int ammo)
     {
+        if (Ammo == -1)
+            return ammo;
         Ammo += ammo;
+        if (maxAmmo == -1)
+            return 0;
         int d = maxAmmo - Ammo;
         if (d < 0)
         {
-            maxAmmo -= d;
+            Ammo -= d;
             return -d;
         }
         else

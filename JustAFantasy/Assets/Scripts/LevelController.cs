@@ -46,6 +46,34 @@ public class LevelController : MonoBehaviour {
                     }
                     Player.SendMessage("AddLife", hp);
                 }
+                else if (command[0].Equals("Weapon"))
+                {
+                    string[] parms = command[1].Split(',');
+                    KeyCode kc;
+                    switch (int.Parse(parms[0]))
+                    {
+                        case 1: kc = KeyCode.Alpha1;
+                            break;
+                        case 2: kc = KeyCode.Alpha2;
+                            break;
+                        case 3: kc = KeyCode.Alpha3;
+                            break;
+                        default: kc = KeyCode.Alpha0;
+                            break;
+                    }
+                    if ((Player.transform.GetChild(3).gameObject.GetComponent<jfWeapon>() as jfWeapon).fastSelect==kc)
+                    {
+                        (Player.transform.GetChild(3).gameObject.GetComponent<jfWeapon>() as jfWeapon).reload(int.Parse(parms[1]));
+                    }
+                    else
+                    {
+                        for (int i = 0; i < Weapons.transform.childCount; i++)
+                        {
+                            if ((Weapons.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).fastSelect==kc)
+                                (Weapons.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).reload(int.Parse(parms[1]));
+                        }
+                    }
+                }
             }
         }
     }
