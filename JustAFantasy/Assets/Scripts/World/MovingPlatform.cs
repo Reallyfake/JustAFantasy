@@ -7,8 +7,6 @@ public class MovingPlatform : MonoBehaviour {
 	
 	public bool isMovingVertical = false;
 	public bool isMovingHorizontal = false;
-	public bool eventBased = false;
-	public bool startMoving = false;
 	public float speed = 2f;
 	public float pingLength = 1f;
 	public float pongTime = 3f;
@@ -22,24 +20,33 @@ public class MovingPlatform : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		if (eventBased == true) {
-			//una variablie specifica x ogni elemento che si muove ad evento
-			if (isMovingVertical == true && startMoving == true) {
-				this.MovingVertical ();
-			}
-			if (isMovingHorizontal == true && startMoving == true) {
-				this.MovingHorizontal ();
-			}
-		} else {
-			if (isMovingVertical == true) {
-				this.MovingVertical ();
-			}
-			if (isMovingHorizontal == true) {
-				this.MovingHorizontal ();
-			}
+		if (isMovingVertical == true) {
+			this.MovingVertical ();
+		}
+		if (isMovingHorizontal == true) {
+			this.MovingHorizontal ();
 		}
 	}
+
+    void MoveVerticallyOn()
+    {
+        isMovingVertical = true;
+    }
+
+    void MoveVerticallyOff()
+    {
+        isMovingVertical = false;
+    }
+
+    void MoveHorizontallyOn()
+    {
+        isMovingHorizontal = true;
+    }
+
+    void MoveHorizontallyOff()
+    {
+        isMovingHorizontal = false;
+    }
 
 	void MovingVertical(){
 		tf.position = tf.position + Vector3.Lerp(Vector3.down*height, Vector3.up*height ,

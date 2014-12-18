@@ -5,6 +5,12 @@ public class CharacterInteractions : MonoBehaviour {
 
 	public float hitRatio;
 
+    void Die()
+    {
+        if (transform.parent != null)
+            transform.parent.gameObject.SendMessage("IsDead", SendMessageOptions.DontRequireReceiver);
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag.Equals("EnemyFire"))

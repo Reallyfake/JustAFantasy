@@ -4,7 +4,6 @@ using System.Collections;
 public class SimpleButton : MonoBehaviour {
 
     public GameObject target;
-    public Object param;
     public bool pressed = false;
     public string action = "Active";
 
@@ -25,10 +24,7 @@ public class SimpleButton : MonoBehaviour {
         {
             pressed = true;
             if (target != null)
-                if (param != null)
-                    target.SendMessage(action, param, SendMessageOptions.DontRequireReceiver);
-                else
-                    target.SendMessage(action, SendMessageOptions.DontRequireReceiver);
+                target.SendMessage(action, SendMessageOptions.DontRequireReceiver);
             (GetComponent<SpriteRenderer>() as SpriteRenderer).sprite = buttonDown;
         }
     }

@@ -5,15 +5,12 @@ public class Smashing : MonoBehaviour {
 
 	Transform tf = null;
 
-	public GameObject explosion;
-
-	public bool isMoving = false;
-	public bool eventBased = false;
-	public bool startMoving = false;
+	public bool Smash = true;
 	public float initialPos = 2f;
 	public float speedDown = 4f;
 	public float speedUp = 2f;
 	public float nextUp, nextDown;
+    public LayerMask WhatIsGround;
 
 	private bool earthLevel = false;
 
@@ -25,45 +22,62 @@ public class Smashing : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		//check su avriablie globale modificata da collisione con player
-		if (eventBased == true) {
-			if (isMoving == true && startMoving == true) {
-				SmashingIt ();
-			}
-		} else {
-			if (isMoving == true) {
-				SmashingIt ();
-			}
-		}
+    void Update()
+    {
+        //check su avriablie globale modificata da collisione con player
 
-//		tf.position = new Vector2 (tf.position.x, initialPos);
-	}
+        if (Smash == true)
+        {
+            SmashingIt();
+        }
 
-	void OnTriggerEnter2D(Collider2D other){
-		if (other.tag == "player") {
-			Instantiate (explosion, transform.position, transform.rotation);
-			Destroy (other.gameObject);
-		}
-		else{ //collisione col terreno
-			nextUp= Time.time + nextDown; 
-			earthLevel = true;
-		}
-//	new Vector2 (tf.position.x, initialPos);
-	}
+        if (Physics2D.OverlapCircle(transform.position, .5f, WhatIsGround))
+        {
+            nextUp = Time.time + nextDown;
+            earthLevel = true;
+        }
 
-	void SmashingIt(){
-		if (!earthLevel){
-			tf.position = tf.position + Vector3.down*speedDown*Time.deltaTime;
-		} 
-		else{
-			if (Time.time > nextUp){
-				tf.position = tf.position + Vector3.up*speedUp*Time.deltaTime;
-				if(tf.position.y > initialPos){
-					earthLevel = false;
-				}
-			}
-		}
-	}
+        //		tf.position = new Vector2 (tf.position.x, initialPos);
+    }
+
+    void SmashOn()
+    {
+        Smash = true;
+    }
+
+    void SmashOff()
+    {
+        Smash = false;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            //Instantiate(explosion, transform.position, transform.rotation);
+            //Destroy(other.gameObject);
+            other.gameObject.SendMessage("Die", SendMessageOptions.DontRequireReceiver);
+        }
+        //	new Vector2 (tf.position.x, initialPos);
+    }
+
+    void SmashingIt()
+    {
+        if (!earthLevel)
+        {
+            tf.position = tf.position + Vector3.down * speedDown * Time.deltaTime;
+        }
+        else
+        {
+            if (Time.time > nextUp)
+            {
+                tf.position = tf.position + Vector3.up * speedUp * Time.deltaTime;
+                if (tf.position.y > initialPos)
+                {
+                    earthLevel = false;
+                }
+            }
+        }
+    }
 
 }

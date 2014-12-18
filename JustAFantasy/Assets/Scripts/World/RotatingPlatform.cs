@@ -9,6 +9,8 @@ public class RotatingPlatform : MonoBehaviour {
 	//x e y del centro di rotazione
 	public float xcenter,ycenter;
 
+    public bool rotating = true;
+
 	Transform tf=null;
 
 	void Start() {
@@ -18,15 +20,28 @@ public class RotatingPlatform : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//aggiorno il tempo
-		timepassed += step;
+        if (rotating)
+        {
 
-		//x=xcentro + Rcos(t+delta t)
-		float xnew = xcenter + radius * Mathf.Cos (timepassed);
+            //aggiorno il tempo
+            timepassed += step;
 
-		//y=ycentro + Rsen(t+deltat)
-		float ynew = ycenter + radius * Mathf.Sin (timepassed);
-		tf.position = new Vector2 (xnew, ynew);
+            //x=xcentro + Rcos(t+delta t)
+            float xnew = xcenter + radius * Mathf.Cos(timepassed);
 
+            //y=ycentro + Rsen(t+deltat)
+            float ynew = ycenter + radius * Mathf.Sin(timepassed);
+            tf.position = new Vector2(xnew, ynew);
+        }
 	}
+
+    void RotateOn()
+    {
+        rotating = true;
+    }
+
+    void RotateOff()
+    {
+        rotating = false;
+    }
 }
