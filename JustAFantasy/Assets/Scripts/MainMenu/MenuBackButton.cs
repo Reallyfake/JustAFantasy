@@ -10,8 +10,13 @@ public class MenuBackButton : MonoBehaviour {
 	}
 	
 	IEnumerator Rotate() {
-		for (int f = 0; f < 90; f++) {
-			cube.transform.Rotate(0f,-1f,0f);
+        float step = 270f - cube.transform.eulerAngles.y;
+        if (step > 180f)
+            step -= 360f;
+        step /= 90f;
+
+        for (int f = 0; f < 90; f++) {
+			cube.transform.Rotate(0f,step,0f);
 			yield return new WaitForSeconds(.005f);
 		}
 	}
