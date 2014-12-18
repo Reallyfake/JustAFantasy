@@ -19,13 +19,16 @@ public class EnemyShooting : jfEnemyController {
 	// used to have a fire ratio
 	public float nextFire,fireRate;
 
+    private Animator anim;
+
 	// what do I see?
 	Collider2D hit;
 
-	void Start(){
+	void Start(){      
         shotSpawn = transform.GetChild(0).gameObject.transform;
         sightStart = transform.GetChild(1).gameObject.transform;
         sightEnd = transform.GetChild(2).gameObject.transform;
+        anim = transform.GetChild(3).gameObject.GetComponent<Animator>() as Animator;
 	}
 
 	void Update () {
@@ -36,19 +39,20 @@ public class EnemyShooting : jfEnemyController {
 		//have I seen a player?
 		if (hit!= null && hit.tag=="Player"){
 			Attack();
+            anim.SetTrigger("Shoot");
 		} else {
 			Patrol ();
 		}
 	}
 
-	void Patrol () {
-		if (transform.localPosition.x > xMax || transform.localPosition.x < xMin){
-			transform.Rotate(new Vector2(0,180));
-			transform.Translate(Vector2.right*speed);
-		} else {
-			transform.Translate(Vector2.right*speed);
-		}
-	}
+    void Patrol()
+    {
+        if (transform.localPosition.x > xMax || transform.localPosition.x < xMin)
+        {
+            transform.Rotate(new Vector2(0, 180));
+        }
+        transform.Translate(Vector2.right * speed);
+    }
 
 	void Attack(){
 		if (Time.time> nextFire){
