@@ -13,6 +13,8 @@ public class CharacterStats : MonoBehaviour {
         if (LifePoints <= 0)
             if (transform.parent != null)
                 transform.parent.SendMessage("IsDead");
+		AudioSource[] audioPlayer= transform.GetChild(2).gameObject.GetComponents<AudioSource>() as AudioSource[];
+		audioPlayer[0].Play();
     }
 
     private void AddLife(int healt)

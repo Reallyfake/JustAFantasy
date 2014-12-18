@@ -8,11 +8,14 @@ public class MovableWASD : MonoBehaviour {
 	private Rigidbody2D rb;
 	private bool canJump = false;
     public bool grounded = false;
+	public bool preGrounded = true;
     public LayerMask WhatIsGround;
     private GameObject feet;
     private jfWeapon weapon;
     private Animator anim;
     private bool canMove = true;
+	private AudioSource[] audioPlayer; 
+
 
     public void allowJump()
     {
@@ -30,6 +33,7 @@ public class MovableWASD : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>() as Rigidbody2D;
         feet = transform.GetChild(0).gameObject;
         anim = this.GetComponent<Animator>() as Animator;
+		audioPlayer = transform.GetChild(2).gameObject.GetComponents<AudioSource>() as AudioSource[];
     }
 
     bool isForward()
@@ -75,6 +79,7 @@ public class MovableWASD : MonoBehaviour {
         if (isJump() && canJump)
         {
             rb.AddForce(transform.up * jumpHeight * 10, ForceMode2D.Impulse);
+			audioPlayer[1].Play ();
             canJump = false;
             if (anim != null)
                 anim.SetTrigger("Jumped");
@@ -99,10 +104,14 @@ public class MovableWASD : MonoBehaviour {
                 weapon.setBool("isRunning", false);
         }
         grounded = Physics2D.OverlapCircle(feet.transform.position, .6f, WhatIsGround);
+		if (!preGrounded && grounded){
+			audioPlayer[2].Play ();
+		}
         if (anim != null)
             anim.SetBool("inAir", !grounded);
         if (weapon != null)
             weapon.setBool("inAir", !grounded);
+		preGrounded = grounded;
     }
 
     void SpikeHit(Vector3 spikePos)
