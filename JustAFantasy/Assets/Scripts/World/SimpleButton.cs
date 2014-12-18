@@ -26,6 +26,10 @@ public class SimpleButton : MonoBehaviour {
             if (target != null)
                 target.SendMessage(action, SendMessageOptions.DontRequireReceiver);
             (GetComponent<SpriteRenderer>() as SpriteRenderer).sprite = buttonDown;
+            if ((GetComponent<CircleCollider2D>() as CircleCollider2D) != null)
+                (GetComponent<CircleCollider2D>() as CircleCollider2D).enabled = false;
+            if ((GetComponent<BoxCollider2D>() as BoxCollider2D) != null)
+                (GetComponent<BoxCollider2D>() as BoxCollider2D).enabled = false;
         }
     }
 }

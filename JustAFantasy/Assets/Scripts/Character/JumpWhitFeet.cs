@@ -28,7 +28,7 @@ public class JumpWhitFeet : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 
-		if (!other.gameObject.tag.Equals("FriendFire") && !other.gameObject.tag.Equals("EnemyFire") && !other.gameObject.tag.Equals("Spike"))
+		if (!other.gameObject.tag.Equals("FriendFire") && !other.gameObject.tag.Equals("EnemyFire") && !other.gameObject.tag.Equals("Spike") && !other.gameObject.tag.Equals("Item"))
         {
             if (isRunning)
             {
