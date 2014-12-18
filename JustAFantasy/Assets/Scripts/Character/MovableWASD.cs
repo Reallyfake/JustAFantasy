@@ -27,8 +27,6 @@ public class MovableWASD : MonoBehaviour {
 	// Use this for initialization
     void Start()
     {
-        if(transform.GetChild(1).gameObject != null)
-            weapon = transform.GetChild(1).gameObject.GetComponent<jfWeapon>() as jfWeapon;
         rb = GetComponent<Rigidbody2D>() as Rigidbody2D;
         feet = transform.GetChild(0).gameObject;
         anim = this.GetComponent<Animator>() as Animator;
@@ -52,6 +50,8 @@ public class MovableWASD : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
+        if (transform.GetChild(1).gameObject != null)
+            weapon = transform.GetChild(1).gameObject.GetComponent<jfWeapon>() as jfWeapon;
         if (isForward() && canMove)
         {
             rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
