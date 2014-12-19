@@ -37,7 +37,11 @@ public class WeaponBar : MonoBehaviour {
             hudAmmo.text += Weapon.Ammo.ToString();
 
         hudName.text = weapon.weaponName;
-        
+
+        if (weapon.Thumb != null)
+        {
+            hudWeapon.texture = weapon.Thumb;
+        }
     }
 
     public void UpdateWeaponAmmo()

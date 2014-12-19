@@ -12,6 +12,7 @@ public abstract class jfWeapon : MonoBehaviour {
     public float fireRatio = 1.0f;
 
     public KeyCode fastSelect;
+    public Texture Thumb;
 
     protected Animator anim;
 
