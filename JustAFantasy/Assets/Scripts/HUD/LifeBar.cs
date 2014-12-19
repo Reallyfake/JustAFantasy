@@ -28,6 +28,9 @@ public class LifeBar : MonoBehaviour {
 	public void setLifePoints(int n){
         if (n < 0)
             n = 0;
+        if (n > maxLife)
+            n = maxLife;
+        currentLife = n;
 		for (int i=0; i<n; i++) {
 			(transform.GetChild(i+1).gameObject.GetComponent<GUITexture> ()as GUITexture).enabled = true;
 				}

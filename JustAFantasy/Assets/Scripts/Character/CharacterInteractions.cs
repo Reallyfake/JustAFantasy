@@ -7,8 +7,11 @@ public class CharacterInteractions : MonoBehaviour {
 
     void Die()
     {
-        if (transform.parent != null)
-            transform.parent.gameObject.SendMessage("IsDead", SendMessageOptions.DontRequireReceiver);
+        CharacterStats cs = GetComponent<CharacterStats>() as CharacterStats;
+        if (cs != null)
+        {
+            cs.SendMessage("RemoveLife", cs.LifePoints);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

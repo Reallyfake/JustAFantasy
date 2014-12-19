@@ -97,6 +97,8 @@ public class LevelController : MonoBehaviour {
     private void IsDead()
     {
 		Player.transform.localPosition = lastPosition;
+        hud.setLife(5);
+        Player.SendMessage("AddLife", 5);
        // Application.LoadLevel("MainMenu");
     }
 
@@ -114,7 +116,6 @@ public class LevelController : MonoBehaviour {
     private void WeaponChanged(GameObject w)
     {
         hud.setWeapon(w.GetComponent<jfWeapon>() as jfWeapon);
-        (WeaponWheel.GetComponent<WeaponWheelController>() as WeaponWheelController).changeWeapon(w.GetComponent<jfWeapon>() as jfWeapon);
     }
 	
 	// Update is called once per frame

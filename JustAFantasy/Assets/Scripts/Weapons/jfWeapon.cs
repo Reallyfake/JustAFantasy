@@ -20,7 +20,9 @@ public abstract class jfWeapon : MonoBehaviour {
     {
         anim = gameObject.GetComponent<Animator>() as Animator;
         if (transform.parent != null && transform.parent.gameObject.tag == "Player")
+        {
             renderer.enabled = true;
+        }
         else
             renderer.enabled = false;
     }
