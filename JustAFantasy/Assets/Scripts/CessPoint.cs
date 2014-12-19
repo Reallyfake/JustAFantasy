@@ -3,11 +3,15 @@ using System.Collections;
 
 public class CessPoint : MonoBehaviour {
 
+
+	public GameObject lc;
+
 	void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.tag == "Player") {
 			this.GetComponent<Animator>().SetTrigger("touched");
-			Debug.Log ("touchè");
+			lc.SendMessage("CheckPoint",this.transform.position);
+
 		}
 	}
 

@@ -8,6 +8,7 @@ public class LevelController : MonoBehaviour {
     private GameObject Weapons;
 	private HUDController hud;
 	private bool is_running = false;
+	public Vector3 lastPosition;
 	// Use this for initialization
 	void Start () {
 		WeaponWheel = transform.GetChild (0).gameObject;
@@ -15,6 +16,7 @@ public class LevelController : MonoBehaviour {
         Player = transform.GetChild(3).gameObject;
         Weapons = transform.GetChild(4).gameObject;
         hud.setWeapon(Player.transform.GetChild(3).gameObject.GetComponent<jfWeapon>() as jfWeapon);
+		lastPosition = Player.transform.localPosition;
 	}
 
     private void exeCommand(string instructions)
@@ -86,9 +88,16 @@ public class LevelController : MonoBehaviour {
         Player.SendMessage("RemoveLife", dmg);
     }
 
+	private void CheckPoint(Vector3 pos)
+	{
+		Debug.Log ("chiamato");
+		lastPosition = pos;
+	}
+
     private void IsDead()
     {
-        Application.LoadLevel("MainMenu");
+		Player.transform.localPosition = lastPosition;
+       // Application.LoadLevel("MainMenu");
     }
 
     private void OnPlayerHit()
