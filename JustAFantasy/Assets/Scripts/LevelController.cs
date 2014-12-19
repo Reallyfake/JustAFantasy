@@ -105,6 +105,7 @@ public class LevelController : MonoBehaviour {
     private void WeaponChanged(GameObject w)
     {
         hud.setWeapon(w.GetComponent<jfWeapon>() as jfWeapon);
+        (WeaponWheel.GetComponent<WeaponWheelController>() as WeaponWheelController).changeWeapon(w.GetComponent<jfWeapon>() as jfWeapon);
     }
 	
 	// Update is called once per frame
