@@ -19,7 +19,7 @@ public class FishMover : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		tf.position=new Vector2 (tf.position.x, Mathf.PingPong((initialTime+Time.time)*speed,maxOffset-minOffset)+minOffset+initialpostion.y);
+		tf.position=new Vector2 (tf.position.x, Mathf.PingPong((initialTime+Time.time)*speed*Time.deltaTime,maxOffset-minOffset)+minOffset+initialpostion.y);
 		if (tf.position.y >= initialpostion.y+maxOffset-epsilon)
 			tf.rotation = Quaternion.AngleAxis(180, Vector3.forward);
 		if (tf.position.y <= initialpostion.y+minOffset+epsilon)

@@ -49,7 +49,7 @@ public class CandyMover : MonoBehaviour {
 	void Update () {
 
 		//time = time + delta time
-		timePassed += step;
+		timePassed += step*Time.deltaTime;
 
 		//update my position using parabolic equations
 
