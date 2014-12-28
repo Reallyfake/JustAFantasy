@@ -10,6 +10,6 @@ public class LinearMover : MonoBehaviour {
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody2D> () as Rigidbody2D;
-		rb.velocity = transform.right * speed*Time.deltaTime;
+		rb.velocity = transform.right * speed;
 	}
 }
