@@ -24,7 +24,11 @@ public class LinearPlatformWRTC : MonoBehaviour {
         if (moving)
         {
             if (Vector2.Distance(transform.position, center) > delta)
+            {
+                Vector2 pos = new Vector2(direction.x * delta, direction.y * delta);
+                transform.position = center + pos;
                 direction = -direction;
+            }
             transform.Translate(direction * speed * Time.deltaTime);
         }
 	}
