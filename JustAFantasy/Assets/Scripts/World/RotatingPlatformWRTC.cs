@@ -19,12 +19,22 @@ public class RotatingPlatformWRTC : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(!clockwise)
-            rad += speed * Time.deltaTime / radius;
-        else
-            rad -= speed * Time.deltaTime / radius;
-        rad = rad % (2 * Mathf.PI);
-        Vector2 pos = new Vector2(Mathf.Cos(rad) * radius, Mathf.Sin(rad) * radius);
-        transform.localPosition = center + pos;
+		if (rotating){
+	        if(!clockwise)
+	            rad += speed * Time.deltaTime / radius;
+	        else
+	            rad -= speed * Time.deltaTime / radius;
+	        rad = rad % (2 * Mathf.PI);
+	        Vector2 pos = new Vector2(Mathf.Cos(rad) * radius, Mathf.Sin(rad) * radius);
+	        transform.localPosition = center + pos;
+		}
+	}
+
+	void RotateOn () {
+		rotating=true;
+	}
+
+	void RotateOff () {
+		rotating=false;
 	}
 }
