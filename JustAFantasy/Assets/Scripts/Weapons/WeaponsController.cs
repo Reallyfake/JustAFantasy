@@ -18,4 +18,17 @@ public class WeaponsController : MonoBehaviour {
     {
         Equipped.SendMessage("Shoot");
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            transform.localPosition -= Vector3.up * 0.5f;
+        }
+
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            transform.localPosition += Vector3.up * 0.5f;
+        }
+    }
 }

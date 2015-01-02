@@ -46,6 +46,11 @@ public class MovableWASD : MonoBehaviour {
         return Input.GetKey(KeyCode.LeftArrow);
     }
 
+    bool isDown()
+    {
+        return Input.GetKey(KeyCode.DownArrow);
+    }
+
     bool isJump()
     {
         return Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Space);
@@ -56,14 +61,33 @@ public class MovableWASD : MonoBehaviour {
     {
         if (transform.GetChild(1).gameObject != null)
             weapon = transform.GetChild(1).gameObject.GetComponent<jfWeapon>() as jfWeapon;
-        if (isForward() && canMove)
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            EdgeCollider2D stand = gameObject.GetComponent<EdgeCollider2D>() as EdgeCollider2D;
+            stand.enabled = false;
+            BoxCollider2D sit = gameObject.GetComponent<BoxCollider2D>() as BoxCollider2D;
+            sit.enabled = true;
+            anim.SetBool("isCrouching", true);
+        }
+
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            EdgeCollider2D stand = gameObject.GetComponent<EdgeCollider2D>() as EdgeCollider2D;
+            stand.enabled = true;
+            BoxCollider2D sit = gameObject.GetComponent<BoxCollider2D>() as BoxCollider2D;
+            sit.enabled = false;
+            anim.SetBool("isCrouching", false);
+        }
+
+        if (isForward() && canMove && !isDown())
         {
             rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
         else
         {
-            if (isBackward() && canMove)
+            if (isBackward() && canMove && !isDown())
             {
                 rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
                 transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1f, transform.localScale.y, transform.localScale.z);
