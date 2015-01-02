@@ -9,6 +9,9 @@ public class ShotController : MonoBehaviour {
 	// damage of one shot
 	public int damage;
     public float lifeTime = 10f;
+
+	//should the shot remain in the scene?
+	public bool resist;
     
 	void OnTriggerEnter2D (Collider2D other)
 	{

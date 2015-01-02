@@ -11,7 +11,9 @@ public abstract class jfEnemyController : MonoBehaviour {
         if (other.gameObject.tag.Equals("FriendFire"))
         {
             int dmg = (other.gameObject.GetComponent<ShotController>() as ShotController).damage;
-            Destroy(other.gameObject);
+			if (!(other.gameObject.GetComponent<ShotController>() as ShotController).resist){
+            	Destroy(other.gameObject);
+			}
             OnHit(dmg);
         }
     }
