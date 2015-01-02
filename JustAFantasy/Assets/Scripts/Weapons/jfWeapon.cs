@@ -19,12 +19,15 @@ public abstract class jfWeapon : MonoBehaviour {
     protected void OnStart()
     {
         anim = gameObject.GetComponent<Animator>() as Animator;
-        if (transform.parent != null && transform.parent.gameObject.tag == "Player")
+
+        renderer.enabled = false;
+        if (transform.parent != null)
         {
-            renderer.enabled = true;
+            WeaponsController wsc = transform.parent.gameObject.GetComponent<WeaponsController>() as WeaponsController;
+            if(wsc != null && wsc.Equipped == this)
+                renderer.enabled = true;
         }
-        else
-            renderer.enabled = false;
+        
     }
 
     public int reload(int ammo)

@@ -8,18 +8,21 @@ public class WeaponBar : MonoBehaviour {
     private string Name;
     private Texture2D Thumb;
 
-    private GUIText hudAmmo;
-    private GUIText hudName;
-    private GUITexture hudWeapon;
+    public GUIText hudAmmo;
+    public GUIText hudName;
+    public GUITexture hudWeapon;
 
     private jfWeapon Weapon;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 	    //ammo, name, weapon
-        hudAmmo = transform.GetChild(0).gameObject.GetComponent<GUIText>() as GUIText;
-        hudName = transform.GetChild(1).gameObject.GetComponent<GUIText>() as GUIText;
-        hudWeapon = transform.GetChild(2).gameObject.GetComponent<GUITexture>() as GUITexture;
+        if(hudAmmo == null)
+            hudAmmo = transform.GetChild(0).gameObject.GetComponent<GUIText>() as GUIText;
+        if(hudName == null)
+            hudName = transform.GetChild(1).gameObject.GetComponent<GUIText>() as GUIText;
+        if(hudWeapon == null)
+            hudWeapon = transform.GetChild(2).gameObject.GetComponent<GUITexture>() as GUITexture;
         hudAmmo.text = "oo/oo";
         hudName.text = "Pistol";
 	}

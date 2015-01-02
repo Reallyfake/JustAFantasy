@@ -3,20 +3,34 @@ using System.Collections;
 
 public class LevelController : MonoBehaviour {
 
-	private GameObject WeaponWheel;
-    private GameObject Player;
-    private GameObject Weapons;
-	private HUDController hud;
-	private bool is_running = false;
+    public GameObject Player;
+	public HUDController hud;
+    public GameObject PauseMenu;
 	public Vector3 lastPosition;
+    public GameObject Weapons;
+
+
+    private bool is_running = false;
+
 	// Use this for initialization
 	void Start () {
-		WeaponWheel = transform.GetChild (0).gameObject;
-		hud = transform.GetChild (2).gameObject.GetComponent<HUDController> () as HUDController;
-        Player = transform.GetChild(3).gameObject;
-        Weapons = transform.GetChild(4).gameObject;
-        hud.setWeapon(Player.transform.GetChild(3).gameObject.GetComponent<jfWeapon>() as jfWeapon);
-		lastPosition = Player.transform.localPosition;
+        
+        if(hud == null)
+		    hud = transform.GetChild (2).gameObject.GetComponent<HUDController> () as HUDController;
+        if(Player == null)
+            Player = transform.GetChild(3).gameObject;
+        if (PauseMenu == null)
+            PauseMenu = transform.GetChild(1).gameObject;
+        if(Weapons == null)
+            Weapons = transform.GetChild(4).gameObject;
+        CharacterInteractions ci = Player.GetComponent<CharacterInteractions>() as CharacterInteractions;
+        if (ci != null && ci.Weapons != null && ci.Weapons.Equipped != null)
+        {
+            Debug.Log(ci.Weapons.Equipped.name);
+            hud.setWeapon(ci.Weapons.Equipped);
+        }
+		
+        lastPosition = Player.transform.localPosition;
 	}
 
     private void exeCommand(string instructions)
@@ -63,17 +77,10 @@ public class LevelController : MonoBehaviour {
                         default: kc = KeyCode.Alpha0;
                             break;
                     }
-                    if ((Player.transform.GetChild(3).gameObject.GetComponent<jfWeapon>() as jfWeapon).fastSelect==kc)
+                    for (int i = 0; i < Weapons.transform.childCount; i++)
                     {
-                        (Player.transform.GetChild(3).gameObject.GetComponent<jfWeapon>() as jfWeapon).reload(int.Parse(parms[1]));
-                    }
-                    else
-                    {
-                        for (int i = 0; i < Weapons.transform.childCount; i++)
-                        {
-                            if ((Weapons.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).fastSelect==kc)
-                                (Weapons.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).reload(int.Parse(parms[1]));
-                        }
+                        if ((Weapons.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).fastSelect==kc)
+                            (Weapons.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).reload(int.Parse(parms[1]));
                     }
                 }
             }
@@ -97,8 +104,13 @@ public class LevelController : MonoBehaviour {
     private void IsDead()
     {
 		Player.transform.localPosition = lastPosition;
+        Player.rigidbody2D.MovePosition(lastPosition);
+        Player.rigidbody2D.velocity = Vector2.zero;
+        Player.rigidbody2D.angularVelocity = 0;
+
         hud.setLife(5);
         Player.SendMessage("AddLife", 5);
+
        // Application.LoadLevel("MainMenu");
     }
 
@@ -106,11 +118,6 @@ public class LevelController : MonoBehaviour {
     {
         Debug.Log("Colpito");
         hud.removeLife();
-    }
-
-    private void ChangeWeapon(GameObject w)
-    {
-        Player.SendMessage("ChangeWeapon", w, SendMessageOptions.DontRequireReceiver);
     }
 
     private void WeaponChanged(GameObject w)
@@ -124,12 +131,6 @@ public class LevelController : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.P)) {
             Pause();
 		}
-		if (Input.GetKeyDown (KeyCode.W)) {
-            showWW();
-		}
-		if (Input.GetKeyUp (KeyCode.W)) {
-            hideWW();
-		}
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -140,37 +141,7 @@ public class LevelController : MonoBehaviour {
     private void Pause()
     {
         Time.timeScale = 0;
-        transform.GetChild(1).gameObject.SetActive(true);
+        PauseMenu.SetActive(true);
     }
 
-    private void showWW()
-    {
-        if (is_running)
-        {
-            StopCoroutine("DragWWTo");
-            is_running = false;
-        }
-        StartCoroutine("DragWWTo", 0f);
-    }
-
-    private void hideWW()
-    {
-        if (is_running)
-        {
-            StopCoroutine("DragWWTo");
-            is_running = false;
-        }
-        StartCoroutine("DragWWTo", 1f);
-    }
-
-	IEnumerator DragWWTo(float newPos) {
-		is_running = true;
-		float step = (newPos - WeaponWheel.transform.position.y) / 20;
-		for (int f = 0; f < 20; f++) {
-			WeaponWheel.transform.position = new Vector2(0, WeaponWheel.transform.position.y + step);
-			yield return new WaitForSeconds(.005f);
-		}
-		WeaponWheel.transform.position = new Vector2 (0, newPos);
-		is_running = false;
-	}
 }

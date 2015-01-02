@@ -4,6 +4,7 @@ using System.Collections;
 public class CharacterInteractions : MonoBehaviour {
 
 	public float hitRatio;
+    public WeaponsController Weapons;
 
     void Die()
     {
@@ -47,12 +48,16 @@ public class CharacterInteractions : MonoBehaviour {
 
     void Shoot()
     {
+        Weapons.shoot();
+        /*
         if (transform.GetChild(3) != null && transform.GetChild(3).gameObject.GetComponent<jfWeapon>() != null)
             transform.GetChild(3).gameObject.SendMessage("Shoot");
+        */
     }
 
     void ChangeWeapon(GameObject w)
     {
+        /*
         if (transform.GetChild(3) != null && transform.GetChild(3).gameObject.GetComponent<jfWeapon>() != null)
         {
             w.transform.position = transform.GetChild(3).gameObject.transform.position;
@@ -70,6 +75,7 @@ public class CharacterInteractions : MonoBehaviour {
             w.transform.parent = transform;
             
         }
+        */
         if (transform.parent != null)
             transform.parent.SendMessage("WeaponChanged", w, SendMessageOptions.DontRequireReceiver);
     }

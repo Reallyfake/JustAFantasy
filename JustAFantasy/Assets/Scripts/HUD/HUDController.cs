@@ -3,15 +3,16 @@ using System.Collections;
 
 public class HUDController : MonoBehaviour {
 
-	private LifeBar lb;
-    private WeaponBar wb;
+	public LifeBar lb;
+    public WeaponBar wb;
 
 	// Use this for initialization
-    void Start()
+    void Awake()
     {
-        lb = transform.GetChild(0).gameObject.GetComponent<LifeBar>() as LifeBar;
-
-        wb = transform.GetChild(2).gameObject.GetComponent<WeaponBar>() as WeaponBar;
+        if(lb == null)
+            lb = transform.GetChild(0).gameObject.GetComponent<LifeBar>() as LifeBar;
+        if(lb == null)
+            wb = transform.GetChild(2).gameObject.GetComponent<WeaponBar>() as WeaponBar;
     }
 
     void IsDead()
@@ -20,7 +21,8 @@ public class HUDController : MonoBehaviour {
     }
 
     public void setWeapon(jfWeapon w){
-        wb.setWeapon(w);
+        if(wb != null)
+            wb.setWeapon(w);
     }
 
     public void updateAmmo()
