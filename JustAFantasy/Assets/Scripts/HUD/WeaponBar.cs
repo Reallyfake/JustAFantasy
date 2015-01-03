@@ -15,6 +15,7 @@ public class WeaponBar : MonoBehaviour {
     private jfWeapon Weapon;
 
 	// Use this for initialization
+    /*
 	void Awake () {
 	    //ammo, name, weapon
         if(hudAmmo == null)
@@ -26,6 +27,7 @@ public class WeaponBar : MonoBehaviour {
         hudAmmo.text = "oo/oo";
         hudName.text = "Pistol";
 	}
+    */
 
     public void setWeapon(jfWeapon weapon)
     {
@@ -39,7 +41,8 @@ public class WeaponBar : MonoBehaviour {
         else
             hudAmmo.text += Weapon.Ammo.ToString();
 
-        hudName.text = weapon.weaponName;
+        if (hudName != null)
+            hudName.text = weapon.weaponName;
 
         if (weapon.Thumb != null)
         {
@@ -47,7 +50,7 @@ public class WeaponBar : MonoBehaviour {
         }
     }
 
-    public void UpdateWeaponAmmo()
+    void Update()
     {
         if (Weapon.Ammo == -1)
             hudAmmo.text = "oo/";

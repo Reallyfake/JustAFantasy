@@ -25,11 +25,6 @@ public class HUDController : MonoBehaviour {
             wb.setWeapon(w);
     }
 
-    public void updateAmmo()
-    {
-        wb.UpdateWeaponAmmo();
-    }
-
     public void setLife(int n)
     {
         lb.setLifePoints(n);

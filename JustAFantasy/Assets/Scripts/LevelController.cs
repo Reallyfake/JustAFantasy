@@ -127,7 +127,6 @@ public class LevelController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        hud.updateAmmo();
 		if (Input.GetKeyDown (KeyCode.P)) {
             Pause();
 		}
