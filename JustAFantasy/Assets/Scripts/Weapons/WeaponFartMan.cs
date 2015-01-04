@@ -24,7 +24,7 @@ public class WeaponFartMan : jfWeapon {
                 GameObject o = Instantiate(shoot, transform.position, Quaternion.AngleAxis(90, Vector3.forward)) as GameObject;
                 if ((transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D) != null)
                 {
-                    o.rigidbody2D.velocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).velocity + Vector2.up * 7;
+					o.rigidbody2D.velocity = new Vector2 ((transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).velocity.x,0) + Vector2.up * 7;
                 }
             }
             else
@@ -39,12 +39,12 @@ public class WeaponFartMan : jfWeapon {
                 {
                     if (transform.lossyScale.x < 0)
                     {
-                        o.rigidbody2D.velocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).velocity - Vector2.right * 7;
+                        o.rigidbody2D.velocity = new Vector2 ((transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).velocity.x,0) - Vector2.right * 7;
                         //o.rigidbody2D.angularVelocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).angularVelocity;
                     }
                     else
                     {
-                        o.rigidbody2D.velocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).velocity + Vector2.right * 7;
+						o.rigidbody2D.velocity = new Vector2 ((transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).velocity.x,0) + Vector2.right * 7;
                         //o.rigidbody2D.angularVelocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).angularVelocity;
                     }
                 }
