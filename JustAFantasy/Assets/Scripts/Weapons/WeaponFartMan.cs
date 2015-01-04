@@ -22,6 +22,8 @@ public class WeaponFartMan : jfWeapon {
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 GameObject o = Instantiate(shoot, transform.position, Quaternion.AngleAxis(90, Vector3.forward)) as GameObject;
+                if ((transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D) != null)
+                    o.rigidbody2D.velocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).velocity;
             }
             else
             {
