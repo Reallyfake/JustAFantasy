@@ -5,6 +5,7 @@ public abstract class jfEnemyController : MonoBehaviour {
 
     public int HP;
     public GameObject explosion;
+    public SpriteRenderer EnemySprite;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -20,6 +21,7 @@ public abstract class jfEnemyController : MonoBehaviour {
 
     void OnHit(int dmg)
     {
+        StopCoroutine(OnHitLight());
         StartCoroutine(OnHitLight());
         HP-=dmg;
         if (HP <= 0)
@@ -28,10 +30,13 @@ public abstract class jfEnemyController : MonoBehaviour {
 
     IEnumerator OnHitLight()
     {
-        Color normal = transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().material.color;
-        transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().material.color = Color.green;
-        yield return new WaitForSeconds(.4f);
-        transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().material.color = normal;
+        if (EnemySprite != null)
+        {
+            //Color normal = EnemySprite.material.color;
+            EnemySprite.material.color = Color.red;
+            yield return new WaitForSeconds(.4f);
+            EnemySprite.material.color = Color.white;
+        }
     }
 
     void OnDie()
