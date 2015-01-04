@@ -18,7 +18,7 @@ public class WeaponSum : MonoBehaviour {
         {
             GameObject o = Instantiate(WeaponItem) as GameObject;
             jfWeapon w = WeaponsCtrl.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon;
-            o.transform.position = new Vector3(0.2f + 0.075f * (((int)w.fastSelect - 48) - 1), 0.1f, 0);
+            o.transform.position = new Vector3(0.15f + 0.0875f * (((int)w.fastSelect - 48) - 1), 0.1f, 0);
             (o.GetComponent<WeaponBar>() as WeaponBar).setWeapon(w);
             o.transform.parent = transform;
             o.name = "Weapon" + ((int)w.fastSelect - 48);
