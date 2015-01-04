@@ -16,7 +16,7 @@ public class ShotController : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D other)
 	{
         
-		if (other.tag == "Floor") {
+		if (other.tag == "Floor" && !resist) {
 			Destroy(gameObject);
 		}
 	}
