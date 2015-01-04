@@ -23,7 +23,9 @@ public class WeaponFartMan : jfWeapon {
             {
                 GameObject o = Instantiate(shoot, transform.position, Quaternion.AngleAxis(90, Vector3.forward)) as GameObject;
                 if ((transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D) != null)
-                    o.rigidbody2D.velocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).velocity;
+                {
+                    o.rigidbody2D.velocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).velocity + Vector2.right * 7;
+                }
             }
             else
             {
@@ -33,6 +35,13 @@ public class WeaponFartMan : jfWeapon {
                 if (transform.lossyScale.x < 0){
 					o.transform.Rotate(Vector3.up,180f);
 				}
+                if ((transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D) != null)
+                {
+                    if(transform.lossyScale.x < 0)
+                        o.rigidbody2D.velocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).velocity - Vector2.right * 7;
+                    else
+                        o.rigidbody2D.velocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).velocity + Vector2.right * 7;
+                }
             }
             lastShotTime = Time.time;
             if(Ammo != -1)

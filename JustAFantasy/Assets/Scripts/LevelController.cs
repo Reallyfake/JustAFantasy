@@ -15,14 +15,6 @@ public class LevelController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         
-        if(hud == null)
-		    hud = transform.GetChild (2).gameObject.GetComponent<HUDController> () as HUDController;
-        if(Player == null)
-            Player = transform.GetChild(3).gameObject;
-        if (PauseMenu == null)
-            PauseMenu = transform.GetChild(1).gameObject;
-        if(Weapons == null)
-            Weapons = transform.GetChild(4).gameObject;
         CharacterInteractions ci = Player.GetComponent<CharacterInteractions>() as CharacterInteractions;
         if (ci != null && ci.Weapons != null && ci.Weapons.Equipped != null)
         {
@@ -65,21 +57,9 @@ public class LevelController : MonoBehaviour {
                 else if (command[0].Equals("Weapon"))
                 {
                     string[] parms = command[1].Split(',');
-                    KeyCode kc;
-                    switch (int.Parse(parms[0]))
-                    {
-                        case 1: kc = KeyCode.Alpha1;
-                            break;
-                        case 2: kc = KeyCode.Alpha2;
-                            break;
-                        case 3: kc = KeyCode.Alpha3;
-                            break;
-                        default: kc = KeyCode.Alpha0;
-                            break;
-                    }
                     for (int i = 0; i < Weapons.transform.childCount; i++)
                     {
-                        if ((Weapons.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).fastSelect==kc)
+                        if ((int)(Weapons.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).fastSelect - 48 == int.Parse(parms[0]))
                             (Weapons.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).reload(int.Parse(parms[1]));
                     }
                 }
