@@ -16,7 +16,7 @@ public class DippingInk : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Time.time > lastDrop){
-			Instantiate(shoot, transform.position, Quaternion.AngleAxis(angleShoot, Vector3.forward));
+			Instantiate(shoot, shotSpawn.transform.position, Quaternion.AngleAxis(angleShoot, Vector3.forward));
 			lastDrop=Time.time + dropRatio;
 		}
 	}
