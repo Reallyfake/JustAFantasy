@@ -100,7 +100,7 @@ public class MovableWASD : MonoBehaviour {
                 }
             }
         }
-        if (isJump() && canJump)
+        if (isJump() && canJump && !isDown())
         {
             rb.AddForce(transform.up * jumpHeight * 10, ForceMode2D.Impulse);
 			audioPlayer[1].Play ();
