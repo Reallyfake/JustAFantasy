@@ -59,7 +59,7 @@ public class WeaponBar : MonoBehaviour {
         if (Weapon.maxAmmo == -1)
             hudAmmo.text += "oo";
         else
-            hudAmmo.text += Weapon.Ammo.ToString();
+            hudAmmo.text += Weapon.maxAmmo.ToString();
     }
 	
 }
