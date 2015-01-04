@@ -37,10 +37,16 @@ public class WeaponFartMan : jfWeapon {
 				}
                 if ((transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D) != null)
                 {
-                    if(transform.lossyScale.x < 0)
+                    if (transform.lossyScale.x < 0)
+                    {
                         o.rigidbody2D.velocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).velocity - Vector2.right * 7;
+                        //o.rigidbody2D.angularVelocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).angularVelocity;
+                    }
                     else
+                    {
                         o.rigidbody2D.velocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).velocity + Vector2.right * 7;
+                        //o.rigidbody2D.angularVelocity = (transform.GetComponentInParent<Rigidbody2D>() as Rigidbody2D).angularVelocity;
+                    }
                 }
             }
             lastShotTime = Time.time;
