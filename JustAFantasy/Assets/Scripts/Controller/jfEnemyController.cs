@@ -21,7 +21,7 @@ public abstract class jfEnemyController : MonoBehaviour {
     void OnHit(int dmg)
     {
         StartCoroutine(OnHitLight());
-        HP--;
+        HP-=dmg;
         if (HP <= 0)
             OnDie();
     }
