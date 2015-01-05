@@ -19,6 +19,8 @@ public class EnemyShooting : jfEnemyController {
 	// used to have a fire ratio
 	public float nextFire,fireRate;
 
+	public bool notMoving = false;
+
     private Animator anim;
 
 	// what do I see?
@@ -41,7 +43,9 @@ public class EnemyShooting : jfEnemyController {
 			Attack();
             anim.SetTrigger("Shoot");
 		} else {
-			Patrol ();
+			if (!notMoving){
+				Patrol ();
+			}
 		}
 	}
 
