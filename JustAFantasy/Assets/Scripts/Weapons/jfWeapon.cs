@@ -40,7 +40,7 @@ public abstract class jfWeapon : MonoBehaviour {
         int d = maxAmmo - Ammo;
         if (d < 0)
         {
-            Ammo -= d;
+            Ammo += d;
             return -d;
         }
         else
