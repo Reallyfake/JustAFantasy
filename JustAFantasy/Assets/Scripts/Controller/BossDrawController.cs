@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BossDrawController : MonoBehaviour {
+public class BossDrawController : jfEnemyController {
 
 	Transform tf;
 	public Transform shotSpawn;
