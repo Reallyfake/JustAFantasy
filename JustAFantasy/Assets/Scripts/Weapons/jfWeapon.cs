@@ -49,7 +49,7 @@ public abstract class jfWeapon : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(fastSelect) && unlocked && transform.parent != null && transform.parent.gameObject.tag != "Player")
+        if (Input.GetKeyDown(fastSelect) && unlocked && transform.parent != null && Ammo != 0)
         {
             transform.parent.SendMessage("ChangeWeapon", transform.gameObject, SendMessageOptions.DontRequireReceiver);
         }
@@ -58,6 +58,21 @@ public abstract class jfWeapon : MonoBehaviour {
     void Shoot()
     {
         OpenFire();
+        if (Ammo == 0)
+        {
+            if (transform.parent != null)
+            {
+                WeaponsController wsc = transform.parent.gameObject.GetComponent<WeaponsController>() as WeaponsController;
+                if (wsc != null && wsc.Equipped == this)
+                {
+                    for (int i = 0; i < wsc.transform.childCount; i++)
+                    {
+                        if ((int)(wsc.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).fastSelect - 48 == 1)
+                            transform.parent.SendMessage("ChangeWeapon", wsc.transform.GetChild(i).gameObject, SendMessageOptions.DontRequireReceiver);
+                    }
+                }
+            }
+        }
     }
 
     public void setTrigger(string trigger)
