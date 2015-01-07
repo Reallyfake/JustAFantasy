@@ -9,11 +9,14 @@ public class WeaponCaloricBomb : jfWeapon
 
     private float lastShotTime = 0f;
 
+	private AudioSource audioWeapon;
+
     // Use this for initialization
     void Start()
     {
         base.OnStart();
         shotSpawn = transform.GetChild(0).gameObject;
+		audioWeapon = this.GetComponent<AudioSource>() as AudioSource;
         
     }
 
@@ -21,6 +24,9 @@ public class WeaponCaloricBomb : jfWeapon
     {
         if ((Time.time - lastShotTime) >= fireRatio && (Ammo > 0 || Ammo == -1))
         {
+			if (audioWeapon != null){
+				audioWeapon.Play();
+			}
             
                 GameObject o = Instantiate(shoot, transform.position, transform.rotation) as GameObject;
 			if (transform.lossyScale.x < 0)

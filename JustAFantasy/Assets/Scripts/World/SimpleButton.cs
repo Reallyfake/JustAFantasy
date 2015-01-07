@@ -9,9 +9,11 @@ public class SimpleButton : MonoBehaviour {
 
     public Sprite buttonUp;
     public Sprite buttonDown;
+	private AudioSource audioButton;
 
 	// Use this for initialization
 	void Start () {
+		audioButton = this.GetComponent<AudioSource>() as AudioSource;
         if (pressed)
             (GetComponent<SpriteRenderer>() as SpriteRenderer).sprite = buttonDown;
         else
@@ -22,6 +24,9 @@ public class SimpleButton : MonoBehaviour {
     {
         if (other.gameObject.tag.Equals("Player") && !pressed)
         {
+			if (audioButton!=null){
+				audioButton.Play();
+			}
             pressed = true;
             if (target != null)
                 target.SendMessage(action, SendMessageOptions.DontRequireReceiver);

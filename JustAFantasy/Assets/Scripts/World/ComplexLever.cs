@@ -13,9 +13,11 @@ public class ComplexLever : MonoBehaviour {
     public Sprite rightLever;
     public Sprite leftLever;
 	public LayerMask lay;
+	private AudioSource audioLever;
 
 	// Use this for initialization
 	void Start () {
+		audioLever = this.GetComponent<AudioSource>() as AudioSource;
         if (onRight)
             (GetComponent<SpriteRenderer>() as SpriteRenderer).sprite = rightLever;
         else
@@ -26,6 +28,9 @@ public class ComplexLever : MonoBehaviour {
    
 		if (Physics2D.OverlapCircle(transform.position,0.6f,lay) && Input.GetKeyDown(KeyCode.D))
         {
+			if (audioLever!=null){
+				audioLever.Play();
+			}
 
 			if (onRight){
 	            onRight = false;

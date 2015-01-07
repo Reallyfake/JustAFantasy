@@ -9,24 +9,24 @@ public class WeaponCatThrower : jfWeapon {
 	public float offset = 0.5f;
 	LineRenderer ln;
 	public ParticleSystem ps;
+	private AudioSource audioWeapon;
     
 
 	// Use this for initialization
 	void Start () {
         base.OnStart();
 		ln = GetComponent<LineRenderer> () as LineRenderer;
+		audioWeapon = this.GetComponent<AudioSource>() as AudioSource;
 	}
 
     public override void OpenFire()
     {
         if(Ammo>0 || Ammo == -1)
         {
-            //if (Input.GetKey(KeyCode.UpArrow))
-            //{
-            //    GameObject o = Instantiate(shoot, transform.position, Quaternion.AngleAxis(90, Vector3.forward)) as GameObject;
-            //}
-            //else
-            //{
+			if (audioWeapon != null && !audioWeapon.isPlaying){
+				audioWeapon.Play();
+			}
+            
                 if (anim != null)
                     anim.SetTrigger("isShooting");
 			if (Input.GetKey(KeyCode.UpArrow)) {
@@ -44,6 +44,7 @@ public class WeaponCatThrower : jfWeapon {
 				ln.enabled =true;
 				end.x = end.x - offset;
 				ps.transform.position=end;
+				ps.transform.rotation = Quaternion.AngleAxis(90f, Vector3.right);
 				ps.gameObject.SetActive(true);
 
 			} else {
@@ -64,11 +65,7 @@ public class WeaponCatThrower : jfWeapon {
 				ps.transform.position=end;
 				ps.gameObject.SetActive(true);
 			}
-                //GameObject o = Instantiate(shoot, transform.position, transform.rotation) as GameObject;
-                //if (transform.lossyScale.x < 0)
-                  //  (o.GetComponent<LinearMover>() as LinearMover).speed *= -1;
-            //}
-            //lastShotTime = Time.time;
+                
             if(Ammo != -1)
                 Ammo--;
         }
@@ -77,6 +74,7 @@ public class WeaponCatThrower : jfWeapon {
 		} else {
 			ps.gameObject.SetActive(false);
 			ln.SetVertexCount(0);
+			audioWeapon.Stop();
 		}
     }
 }
