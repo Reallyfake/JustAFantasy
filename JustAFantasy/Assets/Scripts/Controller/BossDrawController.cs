@@ -7,7 +7,7 @@ public class BossDrawController : jfEnemyController {
 	public Transform shotSpawn;
 	public GameObject shotPrecise;
 	SpriteRenderer sp;
-	float colorRandomChoice,shotRandomChoice;
+	float colorRandomChoice,shotRandomChoice,lastColor;
 	public float colorTime,colorRatio;
 	public float shotTime,shotRatio;
 	Color invictus;
@@ -22,24 +22,12 @@ public class BossDrawController : jfEnemyController {
 
 	// Update is called once per frame
 	void Update () {
-		if (Time.time > colorTime){
-			colorRandomChoice = Random.Range(0f,5.5f);
-			colorTime=Time.time + colorRatio;
-		}
+		//if (Time.time > colorTime){
+			
+		//	colorTime=Time.time + colorRatio;
+		//}
 
-		if (colorRandomChoice >= 0f && colorRandomChoice < 1f){
-			sp.material.color = Color.gray;
-		} else if (colorRandomChoice >= 1f && colorRandomChoice < 2f){
-			sp.material.color = Color.blue;
-		} else if (colorRandomChoice >= 2f && colorRandomChoice < 3f){
-			sp.material.color = Color.red;
-		}else if (colorRandomChoice >= 3f && colorRandomChoice < 4f){
-			sp.material.color = Color.green;
-		}else if (colorRandomChoice >= 4f && colorRandomChoice < 5f){
-			sp.material.color = Color.yellow;
-		} else if (colorRandomChoice >= 5f && colorRandomChoice < 6f){
-			sp.material.color = invictus;
-		}
+
 
 		if (Time.time > shotTime){
 			shotRandomChoice = Random.Range(0f,2.5f);
@@ -53,6 +41,41 @@ public class BossDrawController : jfEnemyController {
 				ShootAll();
 			}
 		
+		}
+	}
+
+	void OnTriggerEnter2D (Collider2D other)
+	{		
+		if (other.tag == "FriendFire") {
+
+			int dmg = (other.gameObject.GetComponent<ShotController>() as ShotController).damage;
+			if (!(other.gameObject.GetComponent<ShotController>() as ShotController).resist){
+				Destroy(other.gameObject);
+			}
+			OnHit(dmg);
+
+			while (Mathf.Abs(colorRandomChoice-lastColor) < 1){
+				colorRandomChoice = Random.Range(0f,6f);
+			}
+
+			if (colorRandomChoice >= 0f && colorRandomChoice < 1f){
+				sp.material.color = Color.gray;
+			} else if (colorRandomChoice >= 1f && colorRandomChoice < 2f){
+				sp.material.color = Color.blue;
+			} else if (colorRandomChoice >= 2f && colorRandomChoice < 3f){
+				sp.material.color = Color.red;
+			}else if (colorRandomChoice >= 3f && colorRandomChoice < 4f){
+				sp.material.color = Color.green;
+			}else if (colorRandomChoice >= 4f && colorRandomChoice < 5f){
+				sp.material.color = Color.yellow;
+			} else if (colorRandomChoice >= 5f && colorRandomChoice <= 6f){
+				sp.material.color = invictus;
+			}
+
+			lastColor = colorRandomChoice;
+
+
+
 		}
 	}
 

@@ -19,7 +19,7 @@ public abstract class jfEnemyController : MonoBehaviour {
         }
     }
 
-    void OnHit(int dmg)
+    protected void OnHit(int dmg)
     {
         StopCoroutine(OnHitLight());
         StartCoroutine(OnHitLight());
