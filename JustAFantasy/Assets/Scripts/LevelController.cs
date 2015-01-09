@@ -18,7 +18,6 @@ public class LevelController : MonoBehaviour {
         CharacterInteractions ci = Player.GetComponent<CharacterInteractions>() as CharacterInteractions;
         if (ci != null && ci.Weapons != null && ci.Weapons.Equipped != null)
         {
-            Debug.Log(ci.Weapons.Equipped.name);
             hud.setWeapon(ci.Weapons.Equipped);
         }
 		
@@ -30,7 +29,6 @@ public class LevelController : MonoBehaviour {
         string[] commands = instructions.Split(';');
         foreach (var instruction in commands)
         {
-            Debug.Log(instruction);
             //command[0] => funzione, command[1] => parametri
             if (instruction.Length > 2)
             {
@@ -76,7 +74,6 @@ public class LevelController : MonoBehaviour {
 
 	private void CheckPoint(Vector3 pos)
 	{
-		Debug.Log ("chiamato");
 		lastPosition = pos;
 	}
 
@@ -95,7 +92,6 @@ public class LevelController : MonoBehaviour {
 
     private void OnPlayerHit()
     {
-        Debug.Log("Colpito");
         hud.removeLife();
     }
 

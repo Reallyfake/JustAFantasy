@@ -49,33 +49,10 @@ public class CharacterInteractions : MonoBehaviour {
     void Shoot()
     {
         Weapons.shoot();
-        /*
-        if (transform.GetChild(3) != null && transform.GetChild(3).gameObject.GetComponent<jfWeapon>() != null)
-            transform.GetChild(3).gameObject.SendMessage("Shoot");
-        */
     }
 
     void ChangeWeapon(GameObject w)
     {
-        /*
-        if (transform.GetChild(3) != null && transform.GetChild(3).gameObject.GetComponent<jfWeapon>() != null)
-        {
-            w.transform.position = transform.GetChild(3).gameObject.transform.position;
-            w.transform.rotation = transform.GetChild(3).gameObject.transform.rotation;
-            if (transform.lossyScale.x * w.transform.lossyScale.x < 0)
-            {
-                Vector3 scale = w.transform.localScale;
-                scale.x *= -1;
-                w.transform.localScale = scale;
-            }
-
-            w.renderer.enabled = true;
-            transform.GetChild(3).gameObject.renderer.enabled = false;
-            transform.GetChild(3).gameObject.transform.parent = w.transform.parent;
-            w.transform.parent = transform;
-            
-        }
-        */
         if (transform.parent != null)
             transform.parent.SendMessage("WeaponChanged", w, SendMessageOptions.DontRequireReceiver);
     }

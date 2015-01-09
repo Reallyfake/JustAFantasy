@@ -77,12 +77,14 @@ public abstract class jfWeapon : MonoBehaviour {
 
     public void setTrigger(string trigger)
     {
-        anim.SetTrigger(trigger);
+        if(anim != null)
+            anim.SetTrigger(trigger);
     }
 
     public void setBool(string var, bool val)
     {
-        anim.SetBool(var, val);
+        if(anim != null)
+            anim.SetBool(var, val);
     }
 
     abstract public void OpenFire();
