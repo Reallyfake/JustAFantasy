@@ -13,8 +13,9 @@ public class MovableWASD : MonoBehaviour {
     private GameObject feet;
     private jfWeapon weapon;
     private Animator anim;
-    private bool canMove = true;
-	private AudioSource[] audioPlayer; 
+    public bool canMove = true;
+	private AudioSource[] audioPlayer;
+    public WeaponsController Weapons;
 
 
     public void allowJump()
@@ -60,7 +61,7 @@ public class MovableWASD : MonoBehaviour {
     void Update()
     {
         if (transform.GetChild(1).gameObject != null)
-            weapon = transform.GetChild(1).gameObject.GetComponent<jfWeapon>() as jfWeapon;
+            weapon = Weapons.Equipped;
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {

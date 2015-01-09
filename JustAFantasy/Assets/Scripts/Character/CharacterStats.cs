@@ -7,12 +7,17 @@ public class CharacterStats : MonoBehaviour {
     public const int maxLifePoints = 10;
 	public float Energy = 0.5f;
 
+    public WeaponsController Weapons;
+
+    private Animator anim;
+
     private void RemoveLife(int dmg)
     {
         LifePoints -= dmg;
         if (LifePoints <= 0)
             if (transform.parent != null)
-                transform.parent.SendMessage("IsDead");
+                StartCoroutine(DieAnimated());
+                
 		AudioSource[] audioPlayer= transform.GetChild(2).gameObject.GetComponents<AudioSource>() as AudioSource[];
 		audioPlayer[0].Play();
     }
@@ -22,5 +27,16 @@ public class CharacterStats : MonoBehaviour {
         LifePoints += healt;
         if(LifePoints>maxLifePoints)
             LifePoints = maxLifePoints;
+    }
+
+    IEnumerator DieAnimated()
+    {
+        (gameObject.GetComponent<MovableWASD>() as MovableWASD).canMove = false;
+        anim = this.GetComponent<Animator>() as Animator;
+        anim.SetTrigger("Die");
+        Weapons.Equipped.setTrigger("Die");
+        yield return new WaitForSeconds(1.2f);
+        transform.parent.SendMessage("IsDead");
+        (gameObject.GetComponent<MovableWASD>() as MovableWASD).canMove = true;
     }
 }

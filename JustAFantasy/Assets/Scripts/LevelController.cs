@@ -69,7 +69,6 @@ public class LevelController : MonoBehaviour {
 
     private void OnPlayerHit(int dmg)
     {
-        Debug.Log("hit");
         for (int i = 0; i < dmg; i++)
             hud.removeLife();
         Player.SendMessage("RemoveLife", dmg);
