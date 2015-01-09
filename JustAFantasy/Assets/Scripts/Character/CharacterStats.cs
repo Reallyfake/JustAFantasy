@@ -13,13 +13,19 @@ public class CharacterStats : MonoBehaviour {
 
     private void RemoveLife(int dmg)
     {
-        LifePoints -= dmg;
-        if (LifePoints <= 0)
-            if (transform.parent != null)
-                StartCoroutine(DieAnimated());
-                
-		AudioSource[] audioPlayer= transform.GetChild(2).gameObject.GetComponents<AudioSource>() as AudioSource[];
-		audioPlayer[0].Play();
+        if (LifePoints > 0)
+        {
+            LifePoints -= dmg;
+            if (LifePoints <= 0)
+            {
+                LifePoints = 0;
+                if (transform.parent != null)
+                    StartCoroutine(DieAnimated());
+            }
+
+            AudioSource[] audioPlayer = transform.GetChild(2).gameObject.GetComponents<AudioSource>() as AudioSource[];
+            audioPlayer[0].Play();
+        }
     }
 
     private void AddLife(int healt)
