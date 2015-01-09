@@ -7,6 +7,7 @@ public class BossFoodController : jfEnemyController {
 	//what should i ShotController and where?
 	public GameObject shot;
 	public Transform shotSpawn;
+    public GameOverMenu gameOverMenu;
 
 	// my transform
 	public Transform tf;
@@ -41,4 +42,9 @@ public class BossFoodController : jfEnemyController {
 		}
 	
 	}
+
+    void OnDestroy()
+    {
+        gameOverMenu.SendMessage("StageClear");
+    }
 }
