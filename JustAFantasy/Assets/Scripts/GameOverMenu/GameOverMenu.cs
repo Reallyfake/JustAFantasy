@@ -23,6 +23,7 @@ public class GameOverMenu : MonoBehaviour {
 
     void StageClear()
     {
+		(this.GetComponent<AudioSource>() as AudioSource).Play();
         StartCoroutine(crStageClear(3));
     }
 
