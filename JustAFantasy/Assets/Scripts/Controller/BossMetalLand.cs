@@ -36,6 +36,8 @@ public class BossMetalLand : jfEnemyController {
 
 	public GameObject shot;
 
+	public GameOverMenu gameOverMenu;
+
 	// Use this for initialization
 	void Start () {
 		tf = GetComponent<Transform> () as Transform;
@@ -104,5 +106,10 @@ public class BossMetalLand : jfEnemyController {
 			rb.velocity = Vector2.zero;
 			jumpKnight();
 		}
+	}
+
+	void OnDestroy()
+	{
+		gameOverMenu.SendMessage("StageClear");
 	}
 }

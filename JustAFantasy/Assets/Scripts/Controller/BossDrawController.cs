@@ -11,6 +11,7 @@ public class BossDrawController : jfEnemyController {
 	public float colorTime,colorRatio;
 	public float shotTime,shotRatio;
 	Color invictus;
+	public GameOverMenu gameOverMenu;
 
 
 	// Use this for initialization
@@ -106,6 +107,11 @@ public class BossDrawController : jfEnemyController {
 		for (int i=0;i<8;i++){
 			Instantiate(shotPrecise, shotSpawn.position, Quaternion.AngleAxis(angle*i, Vector3.forward));
 		}
+	}
+
+	void OnDestroy()
+	{
+		gameOverMenu.SendMessage("StageClear");
 	}
 
 
