@@ -35,6 +35,11 @@ public class CharacterStats : MonoBehaviour {
             LifePoints = maxLifePoints;
     }
 
+    private void SetLife(int healt)
+    {
+        LifePoints = (healt >= 0 ? healt : 0);
+    }
+
     IEnumerator DieAnimated()
     {
         (gameObject.GetComponent<MovableWASD>() as MovableWASD).canMove = false;
