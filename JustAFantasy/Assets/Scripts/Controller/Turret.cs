@@ -23,11 +23,14 @@ public class Turret : jfEnemyController {
 	// shoot the shot from the eye and not from the center of the turret
 	public float offset;
 
+	Animator an;
+
 
 	// Use this for initialization
 	void Start () {
 
 		tf = GetComponent<Transform> () as Transform;
+		an = GetComponent<Animator> () as Animator;
 	
 	}
 	
@@ -47,6 +50,9 @@ public class Turret : jfEnemyController {
 
 		// if the target is in sight, shoot
 		if (dir.magnitude < range && Time.time> nextFire){
+			if (an!=null){
+				an.SetTrigger("shoot");
+			}
 			nextFire= Time.time + fireRate;
 			Instantiate(shot, tf.position + off * offset, tf.rotation);
 		}
