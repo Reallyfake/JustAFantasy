@@ -85,7 +85,7 @@ public class LevelController : MonoBehaviour {
         Player.rigidbody2D.angularVelocity = 0;
 
         hud.setLife(5);
-        Player.SendMessage("AddLife", 5);
+        Player.SendMessage("SetLife", 5);
 
        // Application.LoadLevel("MainMenu");
     }

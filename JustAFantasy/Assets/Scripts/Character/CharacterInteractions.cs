@@ -15,6 +15,12 @@ public class CharacterInteractions : MonoBehaviour {
         }
     }
 
+    void DieFast()
+    {
+        if (transform.parent != null)
+            transform.parent.SendMessage("isDead", SendMessageOptions.DontRequireReceiver);
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag.Equals("EnemyFire"))
