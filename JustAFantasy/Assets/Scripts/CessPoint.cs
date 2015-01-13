@@ -9,7 +9,9 @@ public class CessPoint : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.tag == "Player") {
-			this.GetComponent<Animator>().SetTrigger("touched");
+			if (this.GetComponent<Animator>() != null){
+				this.GetComponent<Animator>().SetTrigger("touched");
+			}
 			lc.SendMessage("CheckPoint",this.transform.position);
             (this.GetComponent<BoxCollider2D>() as BoxCollider2D).enabled = false;
 		}

@@ -7,7 +7,7 @@ public class InstaDeath : MonoBehaviour {
 	{
 		if (other.gameObject.tag.Equals("Player"))
 		{
-			other.gameObject.SendMessage("Die",SendMessageOptions.DontRequireReceiver);
+			other.gameObject.SendMessage("DieFast",SendMessageOptions.DontRequireReceiver);
 		}
 	}
 

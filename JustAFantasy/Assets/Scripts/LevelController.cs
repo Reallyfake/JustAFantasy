@@ -83,6 +83,7 @@ public class LevelController : MonoBehaviour {
         Player.rigidbody2D.MovePosition(lastPosition);
         Player.rigidbody2D.velocity = Vector2.zero;
         Player.rigidbody2D.angularVelocity = 0;
+		Player.rigidbody2D.AddForce(Vector2.right*float.MinValue,ForceMode2D.Impulse);
 
         hud.setLife(5);
         Player.SendMessage("SetLife", 5);
