@@ -110,6 +110,7 @@ public class BossMetalLand : jfEnemyController {
 
 	void OnDestroy()
 	{
-		gameOverMenu.SendMessage("StageClear");
+		if(gameOverMenu!=null)
+			gameOverMenu.SendMessage("StageClear");
 	}
 }
