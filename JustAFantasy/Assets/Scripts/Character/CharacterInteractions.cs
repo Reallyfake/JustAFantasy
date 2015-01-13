@@ -18,7 +18,7 @@ public class CharacterInteractions : MonoBehaviour {
     void DieFast()
     {
         if (transform.parent != null)
-            transform.parent.SendMessage("isDead", SendMessageOptions.DontRequireReceiver);
+            transform.parent.SendMessage("IsDead", SendMessageOptions.DontRequireReceiver);
     }
 
     void OnTriggerEnter2D(Collider2D other)
