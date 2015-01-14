@@ -98,6 +98,9 @@ public class BossMetalLand : jfEnemyController {
 			if (!(other.gameObject.GetComponent<ShotController>() as ShotController).resist){
 				Destroy(other.gameObject);
 			}
+			if (dmg > 400){
+				dmg/=2;
+			}
 			OnHit(dmg);
 		}
 
