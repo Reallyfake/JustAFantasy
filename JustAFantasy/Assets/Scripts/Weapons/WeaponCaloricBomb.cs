@@ -34,6 +34,9 @@ public class WeaponCaloricBomb : jfWeapon
          
             lastShotTime = Time.time;
 
+            if (anim != null)
+                anim.SetTrigger("isShooting");
+
             if (Ammo != -1)
                 Ammo--;
         }
