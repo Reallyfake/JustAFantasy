@@ -55,7 +55,7 @@ public class EnemyShooting : jfEnemyController {
         {
             transform.Rotate(new Vector2(0, 180));
         }
-        transform.Translate(Vector2.right * speed);
+        transform.Translate(Vector2.right * speed *Time.deltaTime);
     }
 
 	void Attack(){
