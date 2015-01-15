@@ -29,7 +29,7 @@ public class WeaponWTFireworks : jfWeapon {
             {
 				GameObject o = Instantiate(shoot, transform.position, transform.rotation) as GameObject;
 				(o.GetComponent<RandomMover>() as RandomMover).Xprobability = 0.5f;
-				(o.GetComponent<RandomMover>() as RandomMover).Yprobability = 1;
+				(o.GetComponent<RandomMover>() as RandomMover).Yprobability = 0.7f;
             }
             else
             {
