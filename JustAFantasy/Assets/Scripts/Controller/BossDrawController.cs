@@ -98,7 +98,7 @@ public class BossDrawController : jfEnemyController {
 		Debug.Log("sparo a 3 " + Time.time);
 		Instantiate(shotPrecise, shotSpawn.position, Quaternion.AngleAxis(235, Vector3.forward));
 		Instantiate(shotPrecise, shotSpawn.position, Quaternion.AngleAxis(270, Vector3.forward));
-		Instantiate(shotPrecise, shotSpawn.position, Quaternion.AngleAxis(295, Vector3.forward));
+		Instantiate(shotPrecise, shotSpawn.position, Quaternion.AngleAxis(305, Vector3.forward));
 	}
 
 	void ShootAll(){
