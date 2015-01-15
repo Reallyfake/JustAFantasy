@@ -28,7 +28,10 @@ public class WeaponChuck : jfWeapon {
             
                 if (anim != null)
                     anim.SetTrigger("isShooting");
-                GameObject o = Instantiate(shoot, transform.position, transform.rotation) as GameObject;
+
+			Transform cam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+			Vector3 chatKills = new Vector3 (cam.position.x, cam.position.y, transform.position.z);
+			GameObject o = Instantiate(shoot,chatKills , transform.rotation) as GameObject;
 			o.transform.parent = GameObject.FindGameObjectWithTag("MainCamera").transform;
                 
             
