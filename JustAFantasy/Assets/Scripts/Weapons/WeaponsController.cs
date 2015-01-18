@@ -30,5 +30,28 @@ public class WeaponsController : MonoBehaviour {
         {
             transform.localPosition += Vector3.up * 0.5f;
         }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if ((int)(transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).fastSelect == (int)Equipped.fastSelect - 1)
+                {
+                    ChangeWeapon(transform.GetChild(i).gameObject);
+                    break;
+                }
+            }      
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if ((int)(transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).fastSelect == (int)Equipped.fastSelect + 1)
+                {
+                    ChangeWeapon(transform.GetChild(i).gameObject);
+                    break;
+                }
+            }
+        }
     }
 }
