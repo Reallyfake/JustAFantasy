@@ -4,6 +4,7 @@ using System.Collections;
 public class WeaponsController : MonoBehaviour {
 
     public jfWeapon Equipped;
+    public jfWeapon DefaultWeapon;
 
     void ChangeWeapon(GameObject w)
     {
@@ -33,25 +34,32 @@ public class WeaponsController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            for (int i = 0; i < transform.childCount; i++)
+            for (int i = transform.childCount-1; i >= 0; i--)
             {
                 if ((int)(transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).fastSelect == (int)Equipped.fastSelect - 1)
                 {
                     ChangeWeapon(transform.GetChild(i).gameObject);
-                    break;
+                    if (Equipped.Ammo != 0)
+                        break;
                 }
-            }      
+            }
+            if (Equipped.Ammo == 0 && DefaultWeapon != null)
+                ChangeWeapon(DefaultWeapon.gameObject);
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
+            jfWeapon actual = Equipped;
             for (int i = 0; i < transform.childCount; i++)
             {
                 if ((int)(transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).fastSelect == (int)Equipped.fastSelect + 1)
                 {
                     ChangeWeapon(transform.GetChild(i).gameObject);
-                    break;
+                    if(Equipped.Ammo != 0)
+                        break;
                 }
             }
+            if (Equipped.Ammo == 0 && DefaultWeapon != null)
+                ChangeWeapon(actual.gameObject);
         }
     }
 }

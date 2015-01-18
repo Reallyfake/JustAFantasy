@@ -63,13 +63,9 @@ public abstract class jfWeapon : MonoBehaviour {
             if (transform.parent != null)
             {
                 WeaponsController wsc = transform.parent.gameObject.GetComponent<WeaponsController>() as WeaponsController;
-                if (wsc != null && wsc.Equipped == this)
+                if (wsc != null && wsc.Equipped == this && wsc.DefaultWeapon != null)
                 {
-                    for (int i = 0; i < wsc.transform.childCount; i++)
-                    {
-                        if ((int)(wsc.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).fastSelect - 48 == 1)
-                            transform.parent.SendMessage("ChangeWeapon", wsc.transform.GetChild(i).gameObject, SendMessageOptions.DontRequireReceiver);
-                    }
+                     transform.parent.SendMessage("ChangeWeapon", wsc.DefaultWeapon.gameObject, SendMessageOptions.DontRequireReceiver);
                 }
             }
         }
