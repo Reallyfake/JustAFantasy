@@ -29,7 +29,7 @@ public class WeaponCatThrower : jfWeapon {
             
                 if (anim != null)
                     anim.SetTrigger("isShooting");
-			if (Input.GetKey(KeyCode.UpArrow)) {
+			if (Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("JoyY")>=0.1f) {
 				Collider2D hit=Physics2D.Linecast(sightStartUp.position, sightEndUp.position).collider;
 				Vector3 end;
 				if (hit !=null){
@@ -69,7 +69,7 @@ public class WeaponCatThrower : jfWeapon {
             if(Ammo != -1)
                 Ammo--;
         }
-		if (Input.GetKey(KeyCode.F) && (Ammo>0 || Ammo == -1)){
+		if ((Input.GetKey(KeyCode.F)|| Input.GetButton("Fire3Joy")) && (Ammo>0 || Ammo == -1)){
 			Invoke("OpenFire",0.01f);
 		} else {
 			ps.gameObject.SetActive(false);

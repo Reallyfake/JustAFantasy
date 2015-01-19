@@ -25,7 +25,7 @@ public class WeaponWTFireworks : jfWeapon {
 			if (audioWeapon != null){
 				audioWeapon.Play();
 			}
-            if (Input.GetKey(KeyCode.UpArrow))
+			if (Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("JoyY")>=0.1f)
             {
 				GameObject o = Instantiate(shoot, transform.position, transform.rotation) as GameObject;
 				(o.GetComponent<RandomMover>() as RandomMover).Xprobability = 0.5f;

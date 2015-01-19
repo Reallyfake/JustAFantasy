@@ -5,6 +5,8 @@ public class WeaponsController : MonoBehaviour {
 
     public jfWeapon Equipped;
     public jfWeapon DefaultWeapon;
+	float downJoy;
+	bool neverJoy;
 
     void ChangeWeapon(GameObject w)
     {
@@ -22,17 +24,20 @@ public class WeaponsController : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+		if (Input.GetKeyDown(KeyCode.DownArrow) || (Input.GetAxis("JoyY")<=-0.1f && !neverJoy))
         {
+			downJoy = Input.GetAxis("JoyY");
             transform.localPosition -= Vector3.up * 0.5f;
+			neverJoy=true;
         }
 
-        if (Input.GetKeyUp(KeyCode.DownArrow))
+		if (Input.GetKeyUp(KeyCode.DownArrow)|| (Mathf.Abs(downJoy - Input.GetAxis("JoyY")) > 0.5f && neverJoy))
         {
             transform.localPosition += Vector3.up * 0.5f;
+			neverJoy=false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Z))
+		if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("WeaponBefore"))
         {
             for (int i = transform.childCount-1; i >= 0; i--)
             {
@@ -46,7 +51,7 @@ public class WeaponsController : MonoBehaviour {
             if (Equipped.Ammo == 0 && DefaultWeapon != null)
                 ChangeWeapon(DefaultWeapon.gameObject);
         }
-        if (Input.GetKeyDown(KeyCode.C))
+		if (Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("WeaponNext"))
         {
             jfWeapon actual = Equipped;
             for (int i = 0; i < transform.childCount; i++)

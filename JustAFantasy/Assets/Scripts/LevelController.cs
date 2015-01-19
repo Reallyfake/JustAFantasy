@@ -103,11 +103,11 @@ public class LevelController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.P)) {
+		if (Input.GetKeyDown (KeyCode.P) || Input.GetButtonDown("Pause")) {
             Pause();
 		}
 
-        if (Input.GetKeyDown(KeyCode.F))
+		if (Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("Fire3Joy"))
         {
             Player.SendMessage("Shoot");
         }

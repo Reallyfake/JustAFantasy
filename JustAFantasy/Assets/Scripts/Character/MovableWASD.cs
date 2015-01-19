@@ -16,6 +16,7 @@ public class MovableWASD : MonoBehaviour {
     public bool canMove = true;
 	private AudioSource[] audioPlayer;
     public WeaponsController Weapons;
+	float downJoy;
 
 
     public void allowJump()
@@ -39,22 +40,22 @@ public class MovableWASD : MonoBehaviour {
 
     bool isForward()
     {
-        return Input.GetKey(KeyCode.RightArrow);
+        return Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("JoyX")>=0.1f;
     }
 
     bool isBackward()
     {
-        return Input.GetKey(KeyCode.LeftArrow);
+		return Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("JoyX")<=-0.1f;
     }
 
     bool isDown()
     {
-        return Input.GetKey(KeyCode.DownArrow);
+		return Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("JoyY")<=-0.1f ;
     }
 
     bool isJump()
     {
-        return Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Space);
+		return Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Space) || Input.GetButton("Fire1Joy");
     }
 
 	// Update is called once per frame
@@ -63,8 +64,9 @@ public class MovableWASD : MonoBehaviour {
         if (transform.GetChild(1).gameObject != null)
             weapon = Weapons.Equipped;
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+		if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetAxis("JoyY")<=-0.1f)
         {
+			downJoy = Input.GetAxis("JoyY");
             EdgeCollider2D stand = gameObject.GetComponent<EdgeCollider2D>() as EdgeCollider2D;
             stand.enabled = false;
             BoxCollider2D sit = gameObject.GetComponent<BoxCollider2D>() as BoxCollider2D;
@@ -72,7 +74,7 @@ public class MovableWASD : MonoBehaviour {
             anim.SetBool("isCrouching", true);
         }
 
-        if (Input.GetKeyUp(KeyCode.DownArrow))
+		if (Input.GetKeyUp(KeyCode.DownArrow) || Mathf.Abs(downJoy - Input.GetAxis("JoyY")) > 0.5f)
         {
             EdgeCollider2D stand = gameObject.GetComponent<EdgeCollider2D>() as EdgeCollider2D;
             stand.enabled = true;

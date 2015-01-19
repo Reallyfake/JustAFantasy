@@ -24,7 +24,7 @@ public class SimpleLever : MonoBehaviour {
 
 	void Update(){
    
-		if (Physics2D.OverlapCircle(transform.position,0.6f,lay) && Input.GetKeyDown(KeyCode.D))
+		if (Physics2D.OverlapCircle(transform.position,0.6f,lay) && (Input.GetKeyDown(KeyCode.D)|| Input.GetButtonDown("Fire2Joy")))
         {
 			if (audioLever!=null){
 				audioLever.Play();

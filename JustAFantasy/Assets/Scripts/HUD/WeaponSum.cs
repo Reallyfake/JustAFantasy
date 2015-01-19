@@ -28,7 +28,7 @@ public class WeaponSum : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetKeyDown(ShowHide))
+		if (Input.GetKeyDown(ShowHide) || Input.GetButtonDown("Weapon"))
         {
             show = !show;
             if (show)

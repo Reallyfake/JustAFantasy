@@ -26,7 +26,7 @@ public class WeaponPistol : jfWeapon {
 				audioWeapon.Play();
 			}
 
-            if (Input.GetKey(KeyCode.UpArrow))
+			if (Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("JoyY")>=0.1f)
             {
                 GameObject o = Instantiate(shoot, transform.position, Quaternion.AngleAxis(90, Vector3.forward)) as GameObject;
 				if (transform.lossyScale.x < 0){
