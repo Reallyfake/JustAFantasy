@@ -51,8 +51,9 @@ public class EnemyShooting : jfEnemyController {
 
     void Patrol()
     {
-		if ((transform.localPosition.x > xMax && transform.rotation != Quaternion.AngleAxis(180, Vector3.up)) || (transform.localPosition.x < xMin && transform.rotation != Quaternion.AngleAxis(0, Vector3.up)))
+		if (transform.localPosition.x > xMax || transform.localPosition.x < xMin)
         {
+			transform.localPosition = new Vector3(Mathf.Clamp(transform.localPosition.x,xMin,xMax),transform.localPosition.y,transform.localPosition.z);
             transform.Rotate(new Vector2(0, 180));
         }
         transform.Translate(Vector2.right * speed *Time.deltaTime);
