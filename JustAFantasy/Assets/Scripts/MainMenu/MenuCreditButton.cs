@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MenuCreditButton : MonoBehaviour {
+public class MenuCreditButton : MenuElement {
 
 	public GameObject cube;
 	private bool isRunningCoroutine=false;

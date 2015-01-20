@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MenuBackButton : MonoBehaviour {
+public class MenuBackButton : MenuElement {
 
 	public GameObject cube;
 	private bool isRunningCoroutine=false;

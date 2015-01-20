@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SettingsQuality : MonoBehaviour {
+public class SettingsQuality : MenuElement {
 
 	public int mode;
 	

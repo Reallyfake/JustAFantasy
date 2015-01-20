@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WorldMapNumber : MonoBehaviour {
+public class WorldMapNumber : MenuElement {
 
 	public string levelName;
 

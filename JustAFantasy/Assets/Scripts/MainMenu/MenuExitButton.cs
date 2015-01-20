@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MenuExitButton : MonoBehaviour {
+public class MenuExitButton : MenuElement {
 
 	void OnMouseUp(){
 		Application.Quit ();

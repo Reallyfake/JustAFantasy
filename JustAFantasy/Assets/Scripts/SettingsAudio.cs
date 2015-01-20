@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SettingsAudio : MonoBehaviour {
+public class SettingsAudio : MenuElement {
 
 	public int mode;
 

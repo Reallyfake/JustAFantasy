@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class jfPmWorldMenu : MonoBehaviour {
+public class jfPmWorldMenu : MenuElement {
 
 	void OnMouseUp(){
 		Time.timeScale = 1;

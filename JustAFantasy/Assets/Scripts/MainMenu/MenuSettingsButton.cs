@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MenuSettingsButton : MonoBehaviour {
+public class MenuSettingsButton : MenuElement {
 
 	public GameObject cube;
 	private bool isRunningCoroutine=false;

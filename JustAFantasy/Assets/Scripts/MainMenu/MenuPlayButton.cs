@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MenuPlayButton : MonoBehaviour {
+public class MenuPlayButton : MenuElement {
 
     void OnMouseUp()
     {
