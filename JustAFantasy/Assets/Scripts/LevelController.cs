@@ -85,6 +85,12 @@ public class LevelController : MonoBehaviour {
         Player.rigidbody2D.angularVelocity = 0;
 		Player.rigidbody2D.AddForce(Vector2.right*float.MinValue,ForceMode2D.Impulse);
 
+		//lose all ammo
+		for (int i = 0; i < Weapons.transform.childCount; i++)
+		{
+			(Weapons.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).reload(-(Weapons.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).Ammo);
+		}
+
         hud.setLife(5);
         Player.SendMessage("SetLife", 5);
 
