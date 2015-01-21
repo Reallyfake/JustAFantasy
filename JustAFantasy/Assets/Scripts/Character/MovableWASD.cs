@@ -29,6 +29,17 @@ public class MovableWASD : MonoBehaviour {
         canJump = false;
     }
 
+    void BlockMovements()
+    {
+        rb.velocity = Vector2.zero;
+        canMove = false;
+    }
+
+    void FreeMovements()
+    {
+        canMove = true;
+    }
+
 	// Use this for initialization
     void Start()
     {

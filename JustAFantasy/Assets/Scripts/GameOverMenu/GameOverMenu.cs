@@ -18,13 +18,27 @@ public class GameOverMenu : MonoBehaviour {
 
     void GameOver()
     {
+        StopPlayer();
         StartCoroutine(crGameOver(3));
     }
 
     void StageClear()
     {
+        StopPlayer();
 		(this.GetComponent<AudioSource>() as AudioSource).Play();
         StartCoroutine(crStageClear(3));
+    }
+
+    void StopPlayer()
+    {
+        if (transform.parent != null)
+        {
+            LevelController lc = transform.parent.gameObject.GetComponent<LevelController>() as LevelController;
+            if (lc != null && lc.Player != null)
+            {
+                lc.Player.SendMessage("BlockMovements");
+            }
+        }
     }
 
     IEnumerator crStageClear(int s)
