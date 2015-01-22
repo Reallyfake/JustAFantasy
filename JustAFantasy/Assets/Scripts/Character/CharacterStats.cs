@@ -11,8 +11,27 @@ public class CharacterStats : MonoBehaviour {
 
     private Animator anim;
 
+	public SpriteRenderer spr;
+
+	void Start(){
+		spr= this.GetComponent<SpriteRenderer>() as SpriteRenderer;
+	}
+
+	IEnumerator OnHitLight()
+	{
+		if (spr != null)
+		{
+			//Color normal = EnemySprite.material.color;
+			spr.material.color = Color.magenta;
+			yield return new WaitForSeconds(.4f);
+			spr.material.color = Color.white;
+		}
+	}
+
     private void RemoveLife(int dmg)
     {
+		StopCoroutine(OnHitLight());
+		StartCoroutine(OnHitLight());
         if (LifePoints > 0)
         {
             LifePoints -= dmg;
