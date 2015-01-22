@@ -6,8 +6,6 @@ public class ChangeCamera : MonoBehaviour {
 	GameObject myPlayer, myCamera;
 	public GameObject[] targets;
 	public float cameraRatio = 2f;
-	float lastCamera;
-	bool change = false;
 
 	// Use this for initialization
 	void Start () {
@@ -15,12 +13,6 @@ public class ChangeCamera : MonoBehaviour {
 		myCamera=GameObject.FindGameObjectWithTag("MainCamera");
 	}
 
-	/*void Update () {
-		if (change){
-			changeCameraReally();
-		}
-	}*/
-	
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.tag.Equals("Player"))
@@ -39,7 +31,7 @@ public class ChangeCamera : MonoBehaviour {
 	}
 	
 	IEnumerator changeCameraReally(){
-		(myPlayer.GetComponent<MovableWASD>() as MovableWASD).canMove = false;
+		(myPlayer.GetComponent<MovableWASD>() as MovableWASD).BlockMovements();
 		for (int i=0; i < targets.Length ;i++){
 			if (targets[i] != null){
 				(myCamera.GetComponent<FollowPlayer>() as FollowPlayer).follower = targets[i];
@@ -48,7 +40,6 @@ public class ChangeCamera : MonoBehaviour {
 			
 		}
 		(myCamera.GetComponent<FollowPlayer>() as FollowPlayer).follower = myPlayer;
-		(myPlayer.GetComponent<MovableWASD>() as MovableWASD).canMove = true;
-		change = false;
+		(myPlayer.GetComponent<MovableWASD>() as MovableWASD).FreeMovements();
 	}
 }

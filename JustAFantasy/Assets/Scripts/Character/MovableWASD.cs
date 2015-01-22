@@ -29,13 +29,13 @@ public class MovableWASD : MonoBehaviour {
         canJump = false;
     }
 
-    void BlockMovements()
+    public void BlockMovements()
     {
         rb.velocity = Vector2.zero;
         canMove = false;
     }
 
-    void FreeMovements()
+    public void FreeMovements()
     {
         canMove = true;
     }
