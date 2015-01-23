@@ -9,4 +9,16 @@ public class WorldMapNumber : MenuElement {
 		Application.LoadLevel(levelName);
 	}
 
+    void OnMouseEnter()
+    {
+        if (transform.childCount > 0)
+            transform.GetChild(0).gameObject.SendMessage("OnMouseEnter", SendMessageOptions.DontRequireReceiver);
+    }
+
+    void OnMouseExit()
+    {
+        if (transform.childCount > 0)
+            transform.GetChild(0).gameObject.SendMessage("OnMouseExit", SendMessageOptions.DontRequireReceiver);
+    }
+
 }
