@@ -8,6 +8,7 @@ public class Lootable : MonoBehaviour {
 	public bool respawn = false;
 	public float lastSpawn;
 	public float spawnRatio = 10f;
+	public bool readActive =true;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,6 +20,7 @@ public class Lootable : MonoBehaviour {
 				this.GetComponent<AudioSource>().Play();
 			}
 			if (destroyOnContact){
+				readActive = false;
 				if ((GetComponent<SpriteRenderer>() as SpriteRenderer) != null)
 					(GetComponent<SpriteRenderer>() as SpriteRenderer).enabled = false;
 				if ((GetComponent<CircleCollider2D>() as CircleCollider2D) != null)
@@ -35,6 +37,7 @@ public class Lootable : MonoBehaviour {
 
 	void Update() {
 		if (respawn && Time.time > lastSpawn){
+			readActive = true;
 			if ((GetComponent<SpriteRenderer>() as SpriteRenderer) != null)
 				(GetComponent<SpriteRenderer>() as SpriteRenderer).enabled = true;
 			if ((GetComponent<CircleCollider2D>() as CircleCollider2D) != null)

@@ -12,6 +12,7 @@ public class BossDrawController : jfEnemyController {
 	public float shotTime,shotRatio;
 	Color invictus;
 	public GameOverMenu gameOverMenu;
+	int initialHP;
 
 
 	// Use this for initialization
@@ -19,6 +20,7 @@ public class BossDrawController : jfEnemyController {
 		sp=this.GetComponent<SpriteRenderer>() as SpriteRenderer;
 		invictus = sp.material.color;
 		tf= this.GetComponent<Transform>() as Transform;
+		initialHP = HP;
 	}
 
 	// Update is called once per frame
@@ -114,5 +116,12 @@ public class BossDrawController : jfEnemyController {
 		gameOverMenu.SendMessage("StageClear");
 	}
 
+	public void RefillHP(){
+		if (HP < initialHP/2){
+			HP = (int) initialHP/2;
+		} else {
+			HP = (int) initialHP;
+		}
+	}
 
 }

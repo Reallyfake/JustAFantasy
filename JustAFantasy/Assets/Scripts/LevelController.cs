@@ -8,6 +8,7 @@ public class LevelController : MonoBehaviour {
     public GameObject PauseMenu;
 	public Vector3 lastPosition;
     public GameObject Weapons;
+	public GameObject Boss;
 
 
     private bool is_running = false;
@@ -89,6 +90,10 @@ public class LevelController : MonoBehaviour {
 		for (int i = 0; i < Weapons.transform.childCount; i++)
 		{
 			(Weapons.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).reload(-(Weapons.transform.GetChild(i).gameObject.GetComponent<jfWeapon>() as jfWeapon).Ammo);
+		}
+
+		if (Boss != null){
+			Boss.SendMessage("RefillHP",SendMessageOptions.DontRequireReceiver);
 		}
 
         hud.setLife(5);

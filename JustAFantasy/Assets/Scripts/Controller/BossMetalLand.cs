@@ -116,4 +116,12 @@ public class BossMetalLand : jfEnemyController {
 		if(gameOverMenu!=null)
 			gameOverMenu.SendMessage("StageClear");
 	}
+
+	public void RefillHP(){
+		if (HP < initialHP/2){
+			HP = (int) initialHP/2;
+		} else {
+			HP = (int) initialHP;
+		}
+	}
 }

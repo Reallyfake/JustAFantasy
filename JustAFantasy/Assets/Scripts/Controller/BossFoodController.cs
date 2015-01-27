@@ -20,10 +20,13 @@ public class BossFoodController : jfEnemyController {
 	
 	private float nextFire;
 
+	int initialHP;
+
 	// Use this for initialization
 	void Start () {
 
 		tf = GetComponent<Transform> () as Transform;
+		initialHP = HP;
 	
 	}
 	
@@ -47,4 +50,12 @@ public class BossFoodController : jfEnemyController {
     {
         gameOverMenu.SendMessage("StageClear");
     }
+
+	public void RefillHP(){
+		if (HP < initialHP/2){
+			HP = (int) initialHP/2;
+		} else {
+			HP = (int) initialHP;
+		}
+	}
 }

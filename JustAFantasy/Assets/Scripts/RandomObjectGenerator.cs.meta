@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f96e0c260df812f4f854c7f8152dfbf1
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - health: {fileID: 100000, guid: 5bb20a43450c0094b9fd0db327c84657, type: 2}
+  - banana: {fileID: 100000, guid: 74d4780466e5a704a8e3ea82362a9369, type: 2}
+  - caloric: {fileID: 100000, guid: 47aea7c5d3c6153448c32f183ebc82ba, type: 2}
+  - WTF: {fileID: 100000, guid: 00cf28df7585fcf429feaebc0a10ab1e, type: 2}
+  - fartMan: {fileID: 100000, guid: 53db2a96f57c22742bdc013211c6a1cf, type: 2}
+  - gunTar: {fileID: 100000, guid: 4254328e4c7d0ae46b33427047b3d89d, type: 2}
+  - catThrower: {fileID: 100000, guid: e99ce61a2731c7f4c8196bee25b0f985, type: 2}
+  - Chat: {fileID: 100000, guid: 4f94f536fbc11154d8098d14ea0c0554, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
