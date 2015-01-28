@@ -6,6 +6,8 @@ public class GameOverMenu : MonoBehaviour {
     public GUITexture gameOver;
     public GUITexture levelClear;
     public GameObject NextLevel, MainMenu, WorldMenu;
+    public GUIText deathCount;
+    public GUIText deaths;
 
 	// Use this for initialization
 	void Start () {
@@ -26,6 +28,16 @@ public class GameOverMenu : MonoBehaviour {
     {
         StopPlayer();
 		(this.GetComponent<AudioSource>() as AudioSource).Play();
+
+        if (transform.parent != null)
+        {
+            LevelController lc = transform.parent.gameObject.GetComponent<LevelController>() as LevelController;
+            if (lc != null && deathCount != null)
+            {
+                deathCount.text = lc.deathCount.ToString();
+            }
+        }
+
         StartCoroutine(crStageClear(3));
     }
 
@@ -54,6 +66,8 @@ public class GameOverMenu : MonoBehaviour {
         NextLevel.SetActive(true);
         MainMenu.SetActive(true);
         WorldMenu.SetActive(true);
+        deathCount.gameObject.SetActive(true);
+        deaths.gameObject.SetActive(true);
         gameOver.gameObject.SetActive(false);
     }
 

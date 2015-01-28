@@ -10,6 +10,8 @@ public class LevelController : MonoBehaviour {
     public GameObject Weapons;
 	public GameObject Boss;
 
+    public int deathCount = 0;
+
 
     private bool is_running = false;
 
@@ -80,6 +82,7 @@ public class LevelController : MonoBehaviour {
 
     private void IsDead()
     {
+        deathCount++;
 		Player.transform.localPosition = lastPosition;
         Player.rigidbody2D.MovePosition(lastPosition);
         Player.rigidbody2D.velocity = Vector2.zero;
