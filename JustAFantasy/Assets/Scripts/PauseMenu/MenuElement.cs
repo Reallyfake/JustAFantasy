@@ -13,12 +13,17 @@ public class MenuElement : MonoBehaviour {
     public float neverKey;
 
     public bool selected = false;
+	public bool unlocked = true;
+	public int level = -1;
 
     void Start()
     {
         keyRatio = 0.5f;
         if(selected)
             gameObject.SendMessage("OnMouseEnter", SendMessageOptions.DontRequireReceiver);
+		if (level >= 0 && GameObject.FindGameObjectWithTag("GameControllerAll") != null){
+			unlocked = (GameObject.FindGameObjectWithTag("GameControllerAll").GetComponent<GameController>() as GameController).gs.levelUnlocked[level];
+		}
     }
 
     void selectThis()

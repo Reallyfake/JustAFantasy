@@ -19,11 +19,14 @@ public static class SaveLoad {
 	
 	public static GameStats Load() {
 		GameStats gs = new GameStats();
+		Debug.Log(Application.persistentDataPath);
 		if(File.Exists(Application.persistentDataPath + "/savedGames.banana")) {
 			BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Open(Application.persistentDataPath + "/savedGames.banana", FileMode.Open);
 			gs = (GameStats)bf.Deserialize(file);
 			file.Close();
+		} else {
+			gs= GameStats.CreateNewGame();
 		}
 		return gs;
 	}

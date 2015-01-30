@@ -8,6 +8,7 @@ public class GameOverMenu : MonoBehaviour {
     public GameObject NextLevel, MainMenu, WorldMenu;
     public GUIText deathCount;
     public GUIText deaths;
+	public int unlockLevelNumber;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +29,8 @@ public class GameOverMenu : MonoBehaviour {
     {
         StopPlayer();
 		(this.GetComponent<AudioSource>() as AudioSource).Play();
+		(GameObject.FindGameObjectWithTag("GameControllerAll").GetComponent<GameController>() as GameController).gs.levelUnlocked[unlockLevelNumber] = true;
+		SaveLoad.Save((GameObject.FindGameObjectWithTag("GameControllerAll").GetComponent<GameController>() as GameController).gs);
 
         if (transform.parent != null)
         {

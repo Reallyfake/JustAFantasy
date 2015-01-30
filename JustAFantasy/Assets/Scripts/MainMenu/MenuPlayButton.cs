@@ -5,7 +5,7 @@ public class MenuPlayButton : MenuElement {
 
     void OnMouseUp()
     {
-        Application.LoadLevel(1);
+        Application.LoadLevel(2);
     }
 	
 }
