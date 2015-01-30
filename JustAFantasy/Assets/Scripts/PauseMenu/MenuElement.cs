@@ -64,7 +64,7 @@ public class MenuElement : MonoBehaviour {
             if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetAxis("JoyX") <= -0.1f)
             {
                 lastKey = neverKey + keyRatio;
-                if (selectOnLeft != null)
+                if (selectOnLeft != null && selectOnLeft.unlocked)
                 {
                     selectOnLeft.selected = true;
                     selectOnLeft.lastKey = Time.time + keyRatio;
@@ -75,7 +75,7 @@ public class MenuElement : MonoBehaviour {
             }
             else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetAxis("JoyX") >= 0.1f)
             {
-                if (selectOnRight != null)
+                if (selectOnRight != null && selectOnRight.unlocked)
                 {
                     selectOnRight.lastKey = neverKey + keyRatio;
                     selectOnRight.selected = true;
@@ -86,7 +86,7 @@ public class MenuElement : MonoBehaviour {
             }
             else if (Input.GetKeyUp(KeyCode.UpArrow) || Input.GetAxis("JoyY")>=0.1f)
             {
-                if (selectOnUp != null)
+                if (selectOnUp != null && selectOnUp.unlocked)
                 {
                     selectOnUp.lastKey = neverKey + keyRatio;
                     selectOnUp.selected = true;
@@ -97,7 +97,7 @@ public class MenuElement : MonoBehaviour {
             }
             else if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetAxis("JoyY") <= -0.1f)
             {
-                if (selectOnDown != null)
+                if (selectOnDown != null && selectOnDown.unlocked)
                 {
                     selectOnDown.lastKey = neverKey + keyRatio;
                     selectOnDown.selected = true;
