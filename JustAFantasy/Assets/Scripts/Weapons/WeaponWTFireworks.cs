@@ -27,6 +27,8 @@ public class WeaponWTFireworks : jfWeapon {
 			}
 			if (Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("JoyY")>=0.1f)
             {
+                if (anim != null)
+                    anim.SetTrigger("isShootingUp");
 				GameObject o = Instantiate(shoot, transform.position, transform.rotation) as GameObject;
 				(o.GetComponent<RandomMover>() as RandomMover).Xprobability = 0.5f;
 				(o.GetComponent<RandomMover>() as RandomMover).Yprobability = 0.7f;

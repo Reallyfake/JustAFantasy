@@ -10,7 +10,7 @@ public class WeaponCatThrower : jfWeapon {
 	LineRenderer ln;
 	public ParticleSystem ps;
 	private AudioSource audioWeapon;
-    
+
 
 	// Use this for initialization
 	void Start () {
@@ -26,10 +26,9 @@ public class WeaponCatThrower : jfWeapon {
 			if (audioWeapon != null && !audioWeapon.isPlaying){
 				audioWeapon.Play();
 			}
-            
-                if (anim != null)
-                    anim.SetTrigger("isShooting");
+
 			if (Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("JoyY")>=0.1f) {
+
 				Collider2D hit=Physics2D.Linecast(sightStartUp.position, sightEndUp.position).collider;
 				Vector3 end;
 				if (hit !=null){
@@ -46,9 +45,12 @@ public class WeaponCatThrower : jfWeapon {
 				ps.transform.position=end;
 				ps.transform.rotation = Quaternion.AngleAxis(90f, Vector3.right);
 				ps.gameObject.SetActive(true);
+                if (anim != null)
+                    anim.SetTrigger("isShootingUp");
 
 			} else {
-
+                if (anim != null)
+                    anim.SetTrigger("isShooting");
 				Collider2D hit=Physics2D.Linecast(sightStart.position, sightEnd.position).collider;
 				Vector3 end;
 				if (hit !=null){
